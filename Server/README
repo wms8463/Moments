@@ -1,21 +1,19 @@
 
-Planning
 
-How should the database structure look
-- sql
-- Moments Table
-    - id (int)
-    - user_id (int)
-    - title (string)
-    - description (string)
-    - emotions (array of strings)
-    - activities (array of strings)
-    - date (date)
-    - people (array of strings)
-    - weather (array of strings)
-    - photos (array of objects with source)
 
-- Activities Table -> each activity will have
-    - actvity_id (int)
-    - name (string)
-    - icon (image)
+PLANNING
+____________________
+
+
+Database Structure
+  - Moments Table
+      - id (int)
+      - user_id (int)
+      - title (string)
+      - description (string)
+      - emotions (array of strings)
+      - activities (array of strings)
+      - date (date)
+      - people (array of strings)
+      - weather (array of strings)
+      - photos (array of objects with source)
