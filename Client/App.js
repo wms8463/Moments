@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native'
 import * as API from './services/api'
+import Tabs from './app/navigation/tabs';
 
 
 
@@ -24,14 +25,11 @@ export default function App() {
 
   useEffect(()=> {
     API.fetchMoments().then((moments) => {
-      setMoments(moments); 
-      setLoading(false)})
+      setMoments(moments); setLoading(false)})
     API.fetchEmotions().then((emotions) => {
-      setEmotions(emotions); 
-      setLoading(false)})
+      setEmotions(emotions); setLoading(false)})
     API.fetchThemes().then((themes) => {
-      setThemes(themes); 
-      setLoading(false)})
+      setThemes(themes); setLoading(false)})
   }, [])
 
   
@@ -39,19 +37,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-
-      <SafeAreaView style={styles.container}>
-
-        <FlatList
-          data = {emotions}
-          keyExtractor = {(item) => item.id}
-          renderItem = {({item}) => (
-            <Text>{item.name}</Text>
-            )}
-            />
-      
-      </SafeAreaView>
-
+      <Tabs moments={moments}/>
     </NavigationContainer>
   );
 }
