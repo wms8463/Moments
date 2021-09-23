@@ -1,0 +1,13 @@
+
+
+
+
+The files in this folder are the manually inputed values for 
+1) emotions
+2) activities
+
+They are used to be the single source of truth on what values the user can
+select from when creating moments on the front end
+
+CREATED ONCE to populate the tables and not touched unless adding additional
+options for the user to select from

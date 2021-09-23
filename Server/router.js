@@ -1,22 +1,17 @@
 
 const Router = require('koa-router')
 const router = new Router()
+const {getAllMoments, postMoment} = require('./controllers/controller')
 
 
 
 // Get request --> grab all the moments
 // Post request --> create a new moment
-// (Maybe) Put request --> update or edit a moment
 
-router.get('/moments', (ctx) => {
-  console.log('Hello from router')
-  ctx.body = 'Get all moments'
-})
+router.get('/moments', getAllMoments)
 
-router.post('/moments', (ctx) => {
-  console.log('Hello from router')
-  ctx.body = ctx.request.body
-})
+router.post('/moments', postMoment)
+
 
 
 
