@@ -6,9 +6,31 @@ const db = require('../model')
 exports.getAllMoments = async ctx => {
   try {
     const moments = await db.Moment.findAll(
-      { include: [db.Emotion, db.Activity] }
+      { include: [db.Emotion, db.Theme] }
     );
     ctx.body = moments
+
+  } catch (err) {
+    console.log(err)
+    ctx.status = 500;
+  }
+};
+
+exports.getEmotionsList = async ctx => {
+  try {
+    const emotions = await db.Emotion.findAll();
+    ctx.body = emotions
+
+  } catch (err) {
+    console.log(err)
+    ctx.status = 500;
+  }
+};
+
+exports.getThemesList = async ctx => {
+  try {
+    const themes = await db.Theme.findAll();
+    ctx.body = themes
 
   } catch (err) {
     console.log(err)
@@ -22,8 +44,8 @@ exports.getAllMoments = async ctx => {
 // seperate the req elements, user inputs go in new moment, selected inputs
 // are added to the association tables
 exports.postMoment = async ctx => {
-  const {title, description, emotions, activities} = ctx.request.body;
-  
+  const {title, description, emotions, themes} = ctx.request.body;
+
   try {
     // create a new moment with title and description
     const newMoment = await db.Moment.create({
@@ -36,16 +58,15 @@ exports.postMoment = async ctx => {
       await newMoment.addEmotion(emotion)
     }
 
-    // add associated activities to the Moment_Activity Table
-    console.log(activities)
-    for (activity of activities) {
-      await newMoment.addActivity(activity)
+    // add associated themes to the Theme Table
+    for (theme of themes) {
+      await newMoment.addTheme(theme)
     }
 
     // send back the complete moment
     ctx.body = await db.Moment.findOne(
       { where: {title: newMoment.title},
-        include: [db.Emotion, db.Activity] 
+        include: [db.Emotion, db.Theme] 
       }
     );
 

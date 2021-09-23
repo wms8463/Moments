@@ -6,7 +6,7 @@
 
 
 module.exports = (sequelize, DataTypes) => 
-  sequelize.define('Activity', {
+  sequelize.define('Theme', {
   name: {
     type: DataTypes.TEXT,
     allowNull: false,

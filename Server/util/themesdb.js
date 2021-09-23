@@ -4,8 +4,8 @@ const db = require('../model/index')
 
 
 
-const populateActivities = async () => {
-  const activities = [
+const populateThemes = async () => {
+  const themes = [
     {name: 'Sports'},
     {name: 'Home'},
     {name: 'Art'},
@@ -16,10 +16,10 @@ const populateActivities = async () => {
     {name: 'Travel'}
   ]
 
-  // add the activities to the Activities database by creating new entries
+  // add the themes to the Themes database by creating new entries
   try {
-    for (let activity of activities) {
-      await db.Activity.create(activity)
+    for (let theme of themes) {
+      await db.Theme.create(theme)
     }
   }
   catch (err) {
@@ -28,4 +28,4 @@ const populateActivities = async () => {
 
 }
 
-populateActivities();
+populateThemes();

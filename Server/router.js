@@ -1,7 +1,12 @@
 
 const Router = require('koa-router')
 const router = new Router()
-const {getAllMoments, postMoment} = require('./controllers/controller')
+const {
+  getAllMoments, 
+  getEmotionsList, 
+  getThemesList, 
+  postMoment
+} = require('./controllers/controller')
 
 
 
@@ -9,6 +14,8 @@ const {getAllMoments, postMoment} = require('./controllers/controller')
 // Post request --> create a new moment
 
 router.get('/moments', getAllMoments)
+router.get('/emotions', getEmotionsList)
+router.get('/themes', getThemesList)
 
 router.post('/moments', postMoment)
 

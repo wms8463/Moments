@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "seed:all": "npm run seed:emotions; npm run seed:activities",
+    "seed:all": "npm run seed:emotions; npm run seed:themes",
     "seed:emotions": "node util/emotionsdb.js",
-    "seed:activities": "node util/activitiesdb.js"
+    "seed:themes": "node util/themesdb.js"
   },
   "keywords": [],
   "author": "",

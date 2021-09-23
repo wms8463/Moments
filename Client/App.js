@@ -1,13 +1,58 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { 
+  StyleSheet, 
+  Text, 
+  SafeAreaView, 
+  FlatList, 
+  View, 
+  ActivityIndicator 
+} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native'
+import * as API from './services/api'
+
+
 
 export default function App() {
+
+  const [isLoading, setLoading] = useState(true)
+  const [moments, setMoments] = useState([])
+  const [emotions, setEmotions] = useState([])
+  const [themes, setThemes] = useState([])
+
+
+
+  useEffect(()=> {
+    API.fetchMoments().then((moments) => {
+      setMoments(moments); 
+      setLoading(false)})
+    API.fetchEmotions().then((emotions) => {
+      setEmotions(emotions); 
+      setLoading(false)})
+    API.fetchThemes().then((themes) => {
+      setThemes(themes); 
+      setLoading(false)})
+  }, [])
+
+  
+
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+
+      <SafeAreaView style={styles.container}>
+
+        <FlatList
+          data = {emotions}
+          keyExtractor = {(item) => item.id}
+          renderItem = {({item}) => (
+            <Text>{item.name}</Text>
+            )}
+            />
+      
+      </SafeAreaView>
+
+    </NavigationContainer>
   );
 }
 
