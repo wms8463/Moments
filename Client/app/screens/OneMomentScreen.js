@@ -9,7 +9,6 @@ function MomentView(props) {
   );
 }
 
-export default MomentView;
 
 const styles = StyleSheet.create({
   container: {
@@ -19,3 +18,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray'
   }
 })
+
+
+export default MomentView;
