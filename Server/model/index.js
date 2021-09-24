@@ -31,8 +31,8 @@ for (let file of files) {
 db.Moment.belongsToMany(db.Emotion, {through: 'Moment_Emotion'})
 db.Emotion.belongsToMany(db.Moment, {through: 'Moment_Emotion'})
 
-db.Moment.belongsToMany(db.Theme, {through: 'Moment_Activity'})
-db.Theme.belongsToMany(db.Moment, {through: 'Moment_Activity'})
+db.Moment.belongsToMany(db.Theme, {through: 'Moment_Theme'})
+db.Theme.belongsToMany(db.Moment, {through: 'Moment_Theme'})
 
 
 db.sequelize = sequelize;

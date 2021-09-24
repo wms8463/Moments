@@ -1,10 +1,37 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
+
+
+
+
+
 
 function Moments(props) {
+  const moments = props.moments
+
+
+
   return (
     <View style={styles.container}>
-      <Text>Moments Screen</Text>
+      <FlatList 
+        data = {moments}
+        keyExtractor={item => item.id}
+        renderItem={({item, index}) => {
+          return (
+          <View>
+            <Text>{item.title}</Text>
+            <Text>{item.description}</Text>
+            <Text>{item.createdAt}</Text>
+            <View style={styles.emotions}>
+              {item.Emotions.map((emotion) => {
+                  return ( <Text key={emotion.id}>{emotion.name}</Text>)
+                })
+              }
+            </View>
+          </View>
+          )
+        }}
+      />
     </View>
   );
 }
@@ -13,10 +40,11 @@ function Moments(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'tomato'
-  }
+    backgroundColor: 'tomato',
+  },
+  emotion: {
+    flexDirection: 'row',
+  },
 })
 
 

@@ -21,6 +21,7 @@ export default function App() {
   const [moments, setMoments] = useState([])
   const [emotions, setEmotions] = useState([])
   const [themes, setThemes] = useState([])
+  // const [frontEndMoments, setfrontEndMoments] = useState([])
 
   // on app start fetch moments, emotions, themes data
   useEffect(()=> {
@@ -29,12 +30,12 @@ export default function App() {
     API.fetchThemes().then((themes) => {setThemes(themes); setLoading(false)})
   }, [])
 
-  
+ 
 
 
   return (
-    <NavigationContainer>
-      <Tabs  moments={moments}/>
+    <NavigationContainer style={styles.container}>
+      <Tabs  moments={moments} emotions={emotions} themes={themes} />
     </NavigationContainer>
  
   );
@@ -42,9 +43,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex:1
   },
 });

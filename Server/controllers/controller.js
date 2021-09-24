@@ -1,4 +1,5 @@
 const db = require('../model')
+const formatDate = require('moment')
 
 
 
@@ -8,6 +9,10 @@ exports.getAllMoments = async ctx => {
     const moments = await db.Moment.findAll(
       { include: [db.Emotion, db.Theme] }
     );
+    // moments.forEach(moment => {
+    //   moment.createdAt = formatDate(moment.createdAt).format('MMMM d, YYYY')
+    // })
+
     ctx.body = moments
 
   } catch (err) {

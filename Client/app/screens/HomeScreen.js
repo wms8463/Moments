@@ -1,112 +1,115 @@
-import { BottomTabBar } from '@react-navigation/bottom-tabs';
+// import { BottomTabBar } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
-
-
-
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  SafeAreaView, 
+  ScrollView, 
+  FlatList 
+} from 'react-native';
+import { emotionSummary } from '../calculations/summary'
+import { SummaryBox } from '../components/SummaryBoxes.js'
+import { SummaryList } from '../components/SummaryList'
+import {HighlightsList} from '../components/HighlightsList'
 
 
 
 
 function Home (props) {
-  const moments = props.moments
 
+  const { moments } = props
   const momentCount = moments.length
+  const filler = 'TBD'
+  const title = 'Moments'
+  const emotionsDescending = emotionSummary(moments)
 
 
   return (
+      
+    <ScrollView style= {styles.container} contentContainerStyle={styles.scrollcontainer}>
 
-    <View style={styles.container}>
-
+      {/* COMPONENT 1 OF 2 */}
       <View style={styles.summaryContainer}>
 
+        {/* 1 OF 3 */}
+        <View style={styles.headerContainer}>
           <Text style={styles.header}>Summary</Text>
+        </View>
 
-          <View style = {styles.summaryComponentsContainer}>
+        {/* 2 OF 3 */}
+        <View style = {styles.summBoxCompCont}>
+          <SummaryBox title={title} data={momentCount}></SummaryBox>
+          <SummaryBox title={filler} data={filler}></SummaryBox>
+        </View>
 
-            <View style = {styles.summaryCompBox}>
-              <Text style={styles.summaryCompLabel}>Moments</Text>
-              <Text style={styles.summaryCompData}>{momentCount}</Text>
-            </View>
-
-            <View style = {styles.summaryCompBox}>
-              <Text style={styles.summaryCompLabel}>TBD</Text>
-              <Text style={styles.summaryCompData}>TBD</Text>
-            </View>
-
-          </View>
-
+        {/* 3 OF 3 */}
+        <View style={styles.longCompContainer}>
+          <SummaryList data={emotionsDescending}></SummaryList>
+        </View>
 
       </View>
-    </View>
-   
+
+      {/* COMPONENT 2 OF 2 */}
+      <View style={styles.highlightsContainer}>
+        <View style={styles.headerContainer}>
+          <Text style={styles.header}>Highlights</Text>
+        </View>
+        <View style={styles.highlightlistcontainer}>
+          <HighlightsList></HighlightsList>
+        </View>
+      </View>
+
+
+    </ScrollView>
+
   );
 }
-
-//       {moments.map((moment) => {
-//   return (
-//     <Text key={moment.id}>{moment.title}</Text>
-//     )
-// })}
 
 
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'tomato',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    width: '100%'
-  },
+  // SCROLLVIEW CONTAINER
+  container: { backgroundColor: 'lightyellow',  },
 
-    // the summary container is the section of the screen for the Summary Header, and two box views, each containing a data point and lable
-    summaryContainer: {
-      top: 50,
-      height: 250,
-      width: '90%',
-      borderStyle: 'solid',
-      borderWidth: 1,
-      borderColor: 'black',
-      alignItems: 'center'
-    },
+  scrollcontainer : { justifyContent: 'flex-start', width: '100%', 
+              flexDirection: 'column', alignItems: 'center', paddingBottom: 100},
 
-      header: {
-        alignSelf: 'flex-start',
-        fontSize: 30,
-        fontWeight: '600'
-      },
+  // SUMMARY CONTAINER
+  summaryContainer: {  top: 70, height: 350, width: '90%', borderStyle: 'solid',
+                      borderWidth: 1, borderColor: 'black', alignItems: 'center',
+                    },
 
-      summaryComponentsContainer: {
-        flexDirection: 'row',
-        width: '95%',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        top: 15,
-      },
+      // ONE OF THREE
+      headerContainer: { flexDirection: 'row', width: '95%', alignItems: 'flex-end',
+                         justifyContent: 'flex-start',  borderColor: 'black',
+                         borderWidth: 1, height: 50, alignSelf:'flex-start',
+                        },
 
-      summaryCompBox: {
-        borderStyle: 'solid',
-        borderColor: 'black',
-        borderWidth: 2,
-        borderRadius: 15,
-        height: 130,
-        width: 150,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'lightgray'
-      },
+          header: { fontSize: 30, fontWeight: '600'
+                  },
 
-        summaryCompLabel: {
-          fontSize: 18,
-          fontWeight: '400',
-          bottom: 15,
-        },
+      // TWO OF THREE
+      summBoxCompCont: { flexDirection: 'row', width: '95%', alignItems: 'center',
+                         justifyContent: 'space-around', borderWidth: 1,
+                         borderColor: 'black', height: 140
+                        },
 
-        summaryCompData: {
-          fontSize: 25,
-          fontWeight: '500',
-        },
+      // THREE OF THREE                         
+      longCompContainer: { width: '100%', borderWidth: 1, borderColor: 'black', 
+                           height: 150, justifyContent: 'center'
+                           },
+  
+  highlightsContainer: {
+                        top: 70, height: 350, width: '90%', borderStyle: 'solid',
+                        borderWidth: 1, borderColor: 'black', alignItems: 'center', 
+                        justifyContent: 'space-around'
+                       },
+      
+      highlightlistcontainer : {
+        width: '100%',
+      }
+
 
 })
 
