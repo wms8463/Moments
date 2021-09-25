@@ -9,22 +9,22 @@ function SummaryList(props) {
 
   const { data } = props
 
-  // alert(data[0].emotion)
-  // const test = data[0].emotion
+ // I would need to pass only the list of moments rather than iterate over
+ // it twice
 
   return (
     <View style={styles.container}>
 
-      {/* <Text>{data[1].emotion}</Text> */}
 
       <FlatList 
       style = {styles.list}
+      contentContainerStyle = {styles.listContentContSty}
       horizontal={true}
       data = {data}
       renderItem = { ({item}) => {
         return (
           <View style={styles.itemcontainer}>
-            <Text style={styles.emotion}>{item.emotion}</Text>
+            <Text style={styles.name}>{item.name}</Text>
             <Text style={styles.count}>{item.count}</Text>
           </View>
           )
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     borderWidth: 1,
     borderColor: 'green',
-    height: 110,
+    height: 80,
     borderRadius : 20,
   },
 
@@ -53,26 +53,31 @@ const styles = StyleSheet.create({
     borderColor: 'red',
   },
 
+  listContentContSty: {
+    alignItems: 'center',
+  },
+
   itemcontainer: {
     borderColor: 'black',
     borderWidth: 1,
     margin: 11,
-    width: 100,
+    width: 60,
+    height: 60,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
-    backgroundColor: 'lightblue'
+    backgroundColor: 'lightgray'
   },
 
 
-  emotion: {
-    fontSize: 13,
+  name: {
+    fontSize: 11,
     fontWeight: '500',
-    bottom: 10,
+    bottom: 5,
   },
 
   count: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: '600',
   },
 })

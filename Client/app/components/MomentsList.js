@@ -32,8 +32,8 @@ function MomentsList(props) {
                 })
               }
             </View>
-            <Text style={styles.description}>{item.description}</Text>
-            <Text style={styles.createdAt}>{item.createdAt}</Text>
+            <Text style={styles.description} numberOfLines={2}>{item.description}</Text>
+            {/* <Text style={styles.createdAt}>{item.createdAt}</Text> */}
           </View>
 
         </View>
@@ -45,28 +45,30 @@ function MomentsList(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'lightgreen',
+    backgroundColor: 'black',
     borderColor: 'black',
     borderWidth: 1,
+
   },
 
   contentContainer: {
     alignItems: 'center',
-    flex: 1,
     width: '100%',
+    paddingTop: 30,
+    paddingBottom: 30
   },
 
   momentContainer: {
-    borderRadius: 10,
+    borderRadius: 12,
     borderColor: 'black',
     borderWidth: 2,
     padding: 5,
-    marginTop: 22,
-    width: 295,
-    height: 110,
+    marginBottom: 20,
+    width: 310,
+    height: 103,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'lightyellow'
+    backgroundColor: 'lightgray'
   },
 
   imageContainer: {
@@ -74,25 +76,28 @@ const styles = StyleSheet.create({
     width: 80,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 15,
-    marginLeft: 5
+    marginRight: 12,
+    marginLeft: 3
   },
 
   image: {
     height: 75,
     width: 75,
-    borderRadius: 10,
+    borderRadius: 15,
     borderColor: 'black',
     borderWidth: 1
   },
 
   textContainer: {
-    flexDirection: 'column'
+    flexDirection: 'column',
+    overflow: 'hidden',
+    flex: 1
   },
 
   title: {
-    fontSize: 20,
-    fontWeight: '500'
+    fontSize: 15,
+    fontWeight: '600',
+    marginTop: 10
   },
 
   emotions: {
@@ -101,7 +106,14 @@ const styles = StyleSheet.create({
 
   emotionTextEl: {
     margin: 2,
-    fontSize: 12
+    marginBottom: 5,
+    fontSize: 11,
+    opacity: .5
+  },
+
+  description: {
+    fontSize: 12,
+    marginBottom: 5
   },
 
   createdAt: {

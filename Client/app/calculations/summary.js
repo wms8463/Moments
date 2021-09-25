@@ -25,7 +25,7 @@ const emotionSummary = (moments) => {
 let array = []
 for (let emotion in output) {
   array.push({
-    emotion: emotion,
+    name: emotion,
     count: output[emotion]
   })
 }
@@ -54,7 +54,7 @@ const themeSummary = (moments) => {
 let array = []
 for (let theme in output) {
   array.push({
-    theme: theme,
+    name: theme,
     count: output[theme]
   })
 }

@@ -20,41 +20,23 @@ function Moments(props) {
       </View>
 
       {/* Narrow bar with a few highlights --> mvp just set space */}
-      <View style={styles.summaryBar}>
+      {/* <View style={styles.summaryBar}>
         <Text style={{fontSize: 10}}>Summary Item Filler</Text>
-      </View>
+      </View> */}
 
       {/* Filter Bar --> mvp just set the space */}
       <View style={styles.filterBar}>
-        <Text style={{fontSize: 10}}>Filter Bar Filler</Text>
+        <Text style={{fontSize: 10, color: 'white'}}>Filter Bar Filler</Text>
       </View>
 
 
       {/* Flat List displaying the moment components */}
-      <MomentsList moments={moments}></MomentsList>
+      <View style={{flex: 1, backgroundColor: 'white',}}>
+        <MomentsList moments={moments}></MomentsList>
+
+      </View>
 
 
-
-
-      {/* <FlatList 
-        data = {moments}
-        keyExtractor={item => item.id}
-        renderItem={({item, index}) => {
-          return (
-          <View>
-            <Text>{item.title}</Text>
-            <Text>{item.description}</Text>
-            <Text>{item.createdAt}</Text>
-            <View style={styles.emotions}>
-              {item.Emotions.map((emotion) => {
-                  return ( <Text key={emotion.id}>{emotion.name}</Text>)
-                })
-              }
-            </View>
-          </View>
-          )
-        }}
-      /> */}
     </View>
   );
 }
@@ -67,11 +49,12 @@ const styles = StyleSheet.create({
   },
 
   headerBar: {
-    height: '20%',
+    height: '17%',
     backgroundColor: 'lightgrey',
     alignItems: 'center',
     justifyContent: 'center'
   },
+
   header: {
     fontSize: 35,
     top: 15
@@ -82,11 +65,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+
   filterBar: {
     height: 60,
-    backgroundColor: 'lightblue',
+    backgroundColor: 'black',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderWidth: .5,
+    borderColor: 'white'
   }
   
 })

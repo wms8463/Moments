@@ -22,6 +22,10 @@ export default function App() {
   const [moments, setMoments] = useState([])
   const [emotions, setEmotions] = useState([])
   const [themes, setThemes] = useState([])
+
+  // set the items that will represent the highlights view
+  const [highlights, setHighlights] = useState([])
+
   // const [frontEndMoments, setfrontEndMoments] = useState([])
 
   // on app start fetch moments, emotions, themes data
