@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-
+import { MomentsList } from '../components/MomentsList'
 
 
 
@@ -31,11 +31,12 @@ function Moments(props) {
 
 
       {/* Flat List displaying the moment components */}
+      <MomentsList moments={moments}></MomentsList>
 
 
 
 
-      <FlatList 
+      {/* <FlatList 
         data = {moments}
         keyExtractor={item => item.id}
         renderItem={({item, index}) => {
@@ -53,7 +54,7 @@ function Moments(props) {
           </View>
           )
         }}
-      />
+      /> */}
     </View>
   );
 }
@@ -64,6 +65,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'tomato',
   },
+
   headerBar: {
     height: '20%',
     backgroundColor: 'lightgrey',
