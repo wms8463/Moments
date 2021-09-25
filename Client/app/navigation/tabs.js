@@ -9,7 +9,7 @@ const Tab = createBottomTabNavigator();
 
 
 const Tabs = (props) => {
-  const {moments, emotions, themes} = props
+  const {moments, emotions, themes, image} = props
  
   return (
     <Tab.Navigator 
@@ -18,7 +18,7 @@ const Tabs = (props) => {
      >
       <Tab.Screen name="Home" children={() => <HomeScreen moments={moments}/>}></Tab.Screen>
       <Tab.Screen name="Moments" children={() => <MomentsScreen moments={moments}/>}></Tab.Screen>
-      <Tab.Screen name="New" component={NewMomentScreen}></Tab.Screen>
+      <Tab.Screen name="New" children={() => <NewMomentScreen image={image}/>}></Tab.Screen>
     </Tab.Navigator>
   );
 }

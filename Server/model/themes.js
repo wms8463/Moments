@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) =>
   sequelize.define('Theme', {
   name: {
     type: DataTypes.TEXT,
-    allowNull: false,
+    allowNull: true,
     unique: true
   },
   

@@ -7,7 +7,7 @@ const formatDate = require('moment')
 exports.getAllMoments = async ctx => {
   try {
     const moments = await db.Moment.findAll(
-      { include: [db.Emotion, db.Theme] }
+      { include: [db.Emotion, db.Theme, db.Photo] }
     );
     // moments.forEach(moment => {
     //   moment.createdAt = formatDate(moment.createdAt).format('MMMM d, YYYY')
@@ -49,15 +49,16 @@ exports.getThemesList = async ctx => {
 // seperate the req elements, user inputs go in new moment, selected inputs
 // are added to the association tables
 exports.postMoment = async ctx => {
-  const {title, description, emotions, themes} = ctx.request.body;
+  const {title, description, emotions, themes, photos} = ctx.request.body;
 
   try {
     // create a new moment with title and description
     const newMoment = await db.Moment.create({
       title: title, 
-      description: description
+      description: description,
     });
 
+    console.log('new moment id: ', newMoment.id)
     // add associated emotions to the Moment_Emotion Table
     for (emotion of emotions) {
       await newMoment.addEmotion(emotion)
@@ -68,14 +69,26 @@ exports.postMoment = async ctx => {
       await newMoment.addTheme(theme)
     }
 
+     // add associated photos to the Photo Table
+     for (photo of photos) {
+       await db.Photo.create(
+         {
+          name: photo.source,
+          MomentId: newMoment.id
+        })
+      // await newMoment.addPhoto(photo)
+    }
+
     // send back the complete moment
     ctx.body = await db.Moment.findOne(
       { where: {title: newMoment.title},
-        include: [db.Emotion, db.Theme] 
+        include: [db.Emotion, db.Theme, db.Photo] 
       }
     );
 
   }
+
+
   catch (err) {
     console.log(err)
     ctx.status = 500;

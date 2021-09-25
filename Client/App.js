@@ -12,10 +12,11 @@ import {NavigationContainer} from '@react-navigation/native'
 import * as API from './services/api'
 import Tabs from './app/navigation/tabs';
 
+const image = '../../assets/basketball-three-people'
 
 
 export default function App() {
-
+  
   // states for moments, emotions, themes
   const [isLoading, setLoading] = useState(true)
   const [moments, setMoments] = useState([])
@@ -35,7 +36,7 @@ export default function App() {
 
   return (
     <NavigationContainer style={styles.container}>
-      <Tabs  moments={moments} emotions={emotions} themes={themes} />
+      <Tabs  moments={moments} emotions={emotions} themes={themes} image={image}/>
     </NavigationContainer>
  
   );

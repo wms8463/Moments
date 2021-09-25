@@ -34,6 +34,12 @@ db.Emotion.belongsToMany(db.Moment, {through: 'Moment_Emotion'})
 db.Moment.belongsToMany(db.Theme, {through: 'Moment_Theme'})
 db.Theme.belongsToMany(db.Moment, {through: 'Moment_Theme'})
 
+db.Moment.hasMany(db.Photo)
+db.Photo.belongsTo(db.Moment, {
+  foreignKey: {
+    allowNull: false
+  }
+})
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
