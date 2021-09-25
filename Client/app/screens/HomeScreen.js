@@ -59,7 +59,7 @@ function Home (props) {
           <Text style={styles.header}>Highlights</Text>
         </View>
         <View style={styles.highlightlistcontainer}>
-          <HighlightsList></HighlightsList>
+          <HighlightsList moments = {moments}></HighlightsList>
         </View>
       </View>
 
