@@ -6,14 +6,19 @@ const db = require('../model/index')
 
 const populateThemes = async () => {
   const themes = [
-    {name: 'Sports'},
-    {name: 'Home'},
+    {name: 'Adventure'},
     {name: 'Art'},
+    {name: 'Family'},
+    {name: 'Food'},
+    {name: 'Friends'},
+    {name: 'Home'},
+    {name: 'Learning'},
     {name: 'Nature'},
     {name: 'Social'},
-    {name: 'Learning'},
+    {name: 'Spiritual'},
+    {name: 'Sports'},
+    {name: 'Travel'},
     {name: 'Work'},
-    {name: 'Travel'}
   ]
 
   // add the themes to the Themes database by creating new entries

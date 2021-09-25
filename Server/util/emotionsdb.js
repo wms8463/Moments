@@ -1,27 +1,26 @@
 const db = require('../model/index')
 
 
-
-
-
 const populateEmotions = async () => {
 
   const emotions = [
-    { name: 'Joy'},
-    { name: 'Excitement'},
-    { name: 'Amazement'},
-    { name: 'Grateful'},
-    { name: 'Content'},
-    { name: 'Peaceful'},
-    { name: 'Hope'},
-    { name: 'Pride'},
     { name: 'Awe'},
-    { name: 'Wonder'},
+    { name: 'Confidence'},
+    { name: 'Contentment'},
+    { name: 'Empathy'},
     { name: 'Euphoria'},
+    { name: 'Excitement'},
+    { name: 'Focus'},
+    { name: 'Grateful'},
+    { name: 'Happy'},
+    { name: 'Hopeful'},
+    { name: 'Humor'},
+    { name: 'Inspired'},
+    { name: 'Joy'},
     { name: 'Love'},
     { name: 'Optimism'},
-    { name: 'Confidence'},
-    { name: 'Inspiration'},
+    { name: 'Proud'},
+    { name: 'Wonder'},
   ]
 
   // add the emotions to the Emotion database by creating new entries
