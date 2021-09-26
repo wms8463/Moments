@@ -14,6 +14,7 @@ app.use(bodyParser())
 app.use(router.routes())
 
 
+
 db.sequelize.sync().then(()=> {
 
   console.log('db synced')

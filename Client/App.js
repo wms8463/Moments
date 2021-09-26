@@ -35,7 +35,6 @@ export default function App() {
     API.fetchThemes().then((themes) => {setThemes(themes); setLoading(false)})
   }, [])
 
- 
 
 
   return (

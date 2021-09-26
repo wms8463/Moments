@@ -30,6 +30,6 @@ const momentEmotions = () => {
         }
         else output[emotion]++
       }
-    }
+    })
     return output
   }

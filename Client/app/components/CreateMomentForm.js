@@ -1,10 +1,32 @@
-import React from "react";
-import { Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, Button, Alert, StyleSheet, ColorPropType, TouchableOpacityComponent } from "react-native";
+import React, { useState } from "react";
+import { 
+  Alert, 
+  Text, 
+  View, 
+  TextInput, 
+  Modal, 
+  TouchableOpacity, 
+  StyleSheet, 
+  Button
+} from "react-native";
 import { useForm, Controller } from "react-hook-form";
+import {Picker} from '@react-native-picker/picker';
+import {CustomPicker} from './CustomPicker'
+import {DropDownButton} from './DropDownButton'
 
-function MomentForm() {
+function MomentForm(props) {
+
+  const { emotions, themes } = props
+
   const { control, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => alert(data.description);
+  const [ modalVisible, setModalVisible ] = useState(false);
+  const [selectedEmotion, setSelectedEmotion] = useState([]);
+  const [selectedTheme, setSelectedTheme] = useState([]);
+  const buttonTitleEmotion = 'Emotions'
+  const buttonTitleTheme = 'Themes'
+
+
+  const onSubmit = data => alert(emotions[0].name);
 
   return (
     <View style={styles.formContainer}>
@@ -27,15 +49,66 @@ function MomentForm() {
         {errors.title && <Text>Title is required.</Text>}
       </View>
 
+
+
       <View style = {styles.dropDownListCont}>
-        <Text>Filler for dropdown list</Text>
+        {/* <TouchableOpacity title='Emotions' onPress={()=> setModalVisible(!modalVisible)} style={styles.dropDownButton}  /> */}
+        <DropDownButton title={buttonTitleEmotion} modalVisible={modalVisible} setModalVisible={setModalVisible} ></DropDownButton>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={{flex: 1}}>
+              <CustomPicker 
+                modalVisible= { modalVisible } 
+                setModalVisible= { setModalVisible } 
+                value= { selectedEmotion } 
+                setValue= { setSelectedEmotion } 
+                items= { emotions }
+                >
+                </CustomPicker>
+          </View>
+        </Modal>
+
+        <DropDownButton title={buttonTitleTheme} modalVisible={modalVisible} setModalVisible={setModalVisible} ></DropDownButton>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={{flex: 1}}>
+              <CustomPicker 
+                modalVisible= { modalVisible } 
+                setModalVisible= { setModalVisible } 
+                value= { selectedTheme } 
+                setValue= { setSelectedTheme } 
+                items= { themes }
+                >
+                </CustomPicker>
+          </View>
+        </Modal>
+
+
+
+
+
       </View>
+
+
 
       <View style={styles.descInputLabelCont}>
         <Text style={styles.descLabel}>Description</Text>
         <Controller control={control} rules= {{required: {value: true, message: 'Description required'}}}
           render={({ field: { onChange, onBlur, value } }) => (
-
                 <TextInput
                   style={styles.descInput}
                   error={errors.description}
@@ -107,7 +180,10 @@ const styles = StyleSheet.create({
     marginBottom: 25,
     backgroundColor: 'lightgreen',
     borderWidth: 1,
-    borderColor: 'green'
+    borderColor: 'green',
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    alignItems: "center"
   },
 
   descInputLabelCont: {
@@ -158,4 +234,4 @@ const styles = StyleSheet.create({
   
 })
 
-module.exports = {MomentForm}
+module.exports = { MomentForm }

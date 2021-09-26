@@ -1,20 +1,20 @@
 
 
 
-
+const urlNumber = '192.168.0.174'
 
 const fetchMoments = () => {
-  return fetch('http://192.168.1.152:3051/moments')
+  return fetch(`http://${urlNumber}:3051/moments`)
   .then(res => res.json())
 }
 
 const fetchEmotions = () => {
-  return fetch('http://192.168.1.152:3051/emotions')
+  return fetch(`http://${urlNumber}:3051/emotions`)
   .then(res => res.json())
 }
 
 const fetchThemes = () => {
-  return fetch('http://192.168.1.152:3051/themes')
+  return fetch(`http://${urlNumber}:3051/themes`)
   .then(res => res.json())
 }
 

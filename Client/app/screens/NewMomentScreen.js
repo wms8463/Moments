@@ -1,27 +1,28 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { MomentForm } from '../components/CreateMomentForm'
-import {ImageSelector} from '../components/ImageSelector'
-import {KeyboardAvoidingWrapper} from '../components/KeyboardAvoidingWrapper'
+import { ImageSelector } from '../components/ImageSelector'
+import { KeyboardAvoidingWrapper } from '../components/KeyboardAvoidingWrapper'
 
 
 
 function NewMoment(props) {
-  
+  const {emotions, themes} = props
+
 
   return (
     <KeyboardAvoidingWrapper>
       <View style={styles.container}>
         <Image 
-          source={require('../../assets/zen-rocks.jpeg')}
+          source={require('../../assets/demo/zen-rocks.jpeg')}
           style={{zIndex: -1, position:'absolute', }}
           blurRadius={10}
-          resizeMode='contian'
+          resizeMode='contain'
           />
 
         <View style={styles.formContainer}>
           <View style={styles.formInputsContainer}>
-            <MomentForm></MomentForm>
+            <MomentForm emotions={emotions} ></MomentForm>
           </View>
 
           <ImageSelector></ImageSelector>

@@ -18,7 +18,7 @@ const Tabs = (props) => {
      >
       <Tab.Screen name="Home" children={() => <HomeScreen moments={moments}/>}></Tab.Screen>
       <Tab.Screen name="Moments" children={() => <MomentsScreen moments={moments}/>}></Tab.Screen>
-      <Tab.Screen name="New" children={() => <NewMomentScreen image={image}/>}></Tab.Screen>
+      <Tab.Screen name="New" children={() => <NewMomentScreen emotions={emotions} themes={themes} image={image}/>}></Tab.Screen>
     </Tab.Navigator>
   );
 }
