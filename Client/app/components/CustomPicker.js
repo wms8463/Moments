@@ -8,15 +8,6 @@ function CustomPicker(props) {
   // props for modal state
   const { modalVisible, setModalVisible, value, setValue, items } = props
 
-  // const pickerData = (data) => {
-  //   data.map( data => { 
-  //     return (
-  //       <Picker.Item label={data} value={data}
-  //     );
-  //   })
-  // };
-
-
   return (
     <Modal 
       animationType="slide" 

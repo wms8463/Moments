@@ -1,11 +1,12 @@
 import React from 'react';
-import {StyleSheet, View, Text, TextInput, Controller} from 'react-native'
+import { StyleSheet, View, Text, TextInput, Controller } from 'react-native'
 
 
 
 function FormDescriptionComponent(props) {
   const {control, formState} = props
-  
+  const errors = formState
+
   return (
     <View style={styles.descInputLabelCont}>
         <Text style={styles.descLabel}>Description</Text>
@@ -25,9 +26,8 @@ function FormDescriptionComponent(props) {
                   defaultValue= ""
         
         />
-        {/* {errors.description && <Text>Description is required</Text>} */}
-
-      </View>
+        {errors.description && <Text>Description is required</Text>}
+    </View>
   );
 }
 

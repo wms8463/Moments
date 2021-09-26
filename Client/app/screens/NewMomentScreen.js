@@ -22,7 +22,7 @@ function NewMoment(props) {
 
         <View style={styles.formContainer}>
           <View style={styles.formInputsContainer}>
-            <MomentForm emotions={emotions} ></MomentForm>
+            <MomentForm emotions={emotions} themes={themes}></MomentForm>
           </View>
 
           <ImageSelector></ImageSelector>

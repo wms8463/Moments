@@ -10,19 +10,22 @@ import {
   Button
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import {Picker} from '@react-native-picker/picker';
-import {CustomPicker} from './CustomPicker'
-import {DropDownButton} from './DropDownButton'
-import {FormDescriptionComponent} from './FormDescriptionComponent'
+import { CustomPicker } from './CustomPicker'
+import { DropDownButton } from './DropDownButton'
+import { FormDescriptionComponent } from './FormDescriptionComponent'
 
 function MomentForm(props) {
 
   const { emotions, themes } = props
-
   const { control, handleSubmit, formState: { errors } } = useForm();
-  const [ modalVisible, setModalVisible ] = useState(false);
-  const [selectedEmotion, setSelectedEmotion] = useState([]);
-  const [selectedTheme, setSelectedTheme] = useState([]);
+
+  const [ emotionModal, setEmotionModal ] = useState(false);
+  const [ themeModal, setThemeModal ] = useState(false);
+
+  const [emotion, setEmotion] = useState([]);
+  const [theme, setTheme] = useState([]);
+
+
   const buttonTitleEmotion = 'Emotions'
   const buttonTitleTheme = 'Themes'
 
@@ -52,43 +55,27 @@ function MomentForm(props) {
 
 
 
-
-
-      {/* Need to refactor this into a single line for the button and modal together */}
+      {/* Select Emotions and Themes */}
       <View style = {styles.dropDownListCont}>
-        {/* <TouchableOpacity title='Emotions' onPress={()=> setModalVisible(!modalVisible)} style={styles.dropDownButton}  /> */}
-        <DropDownButton title={buttonTitleEmotion} modalVisible={modalVisible} setModalVisible={setModalVisible} ></DropDownButton>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
-          }}
+        <DropDownButton title={buttonTitleEmotion} modalVisible={emotionModal} setModalVisible={setEmotionModal} ></DropDownButton>
+        <DropDownButton title={buttonTitleTheme} modalVisible={themeModal} setModalVisible={setThemeModal} ></DropDownButton>
+        <CustomPicker 
+          modalVisible= { emotionModal } setModalVisible= { setEmotionModal } 
+          value= { emotion } setValue= { setEmotion } items= { emotions }
         >
-          <View style={{flex: 1}}>
-              <CustomPicker 
-                modalVisible= { modalVisible } 
-                setModalVisible= { setModalVisible } 
-                value= { selectedEmotion } 
-                setValue= { setSelectedEmotion } 
-                items= { emotions }
-                >
-                </CustomPicker>
-          </View>
-        </Modal>
+        </CustomPicker>
 
-
-
-
-
+        <CustomPicker 
+          modalVisible= { themeModal } setModalVisible= { setThemeModal } 
+          value= { theme } setValue= { setTheme } items= { themes }
+        >
+        </CustomPicker>
 
       </View>
 
 
-      <FormDescriptionComponent control={control} ></FormDescriptionComponent>
-      {/* <View style={styles.descInputLabelCont}>
+      {/* <FormDescriptionComponent control={control} formState= {{formState: {errors}}} ></FormDescriptionComponent> */}
+      <View style={styles.descInputLabelCont}>
         <Text style={styles.descLabel}>Description</Text>
         <Controller control={control} rules= {{required: {value: true, message: 'Description required'}}}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -107,8 +94,7 @@ function MomentForm(props) {
         
         />
         {errors.description && <Text>Description is required</Text>}
-
-      </View> */}
+      </View>
 
 
       <TouchableOpacity title="Submit" onPress={handleSubmit(onSubmit)} style= {styles.button}> 
