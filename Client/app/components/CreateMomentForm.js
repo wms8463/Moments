@@ -13,6 +13,7 @@ import { useForm, Controller } from "react-hook-form";
 import {Picker} from '@react-native-picker/picker';
 import {CustomPicker} from './CustomPicker'
 import {DropDownButton} from './DropDownButton'
+import {FormDescriptionComponent} from './FormDescriptionComponent'
 
 function MomentForm(props) {
 
@@ -51,6 +52,9 @@ function MomentForm(props) {
 
 
 
+
+
+      {/* Need to refactor this into a single line for the button and modal together */}
       <View style = {styles.dropDownListCont}>
         {/* <TouchableOpacity title='Emotions' onPress={()=> setModalVisible(!modalVisible)} style={styles.dropDownButton}  /> */}
         <DropDownButton title={buttonTitleEmotion} modalVisible={modalVisible} setModalVisible={setModalVisible} ></DropDownButton>
@@ -75,27 +79,6 @@ function MomentForm(props) {
           </View>
         </Modal>
 
-        <DropDownButton title={buttonTitleTheme} modalVisible={modalVisible} setModalVisible={setModalVisible} ></DropDownButton>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={{flex: 1}}>
-              <CustomPicker 
-                modalVisible= { modalVisible } 
-                setModalVisible= { setModalVisible } 
-                value= { selectedTheme } 
-                setValue= { setSelectedTheme } 
-                items= { themes }
-                >
-                </CustomPicker>
-          </View>
-        </Modal>
 
 
 
@@ -104,8 +87,8 @@ function MomentForm(props) {
       </View>
 
 
-
-      <View style={styles.descInputLabelCont}>
+      <FormDescriptionComponent control={control} ></FormDescriptionComponent>
+      {/* <View style={styles.descInputLabelCont}>
         <Text style={styles.descLabel}>Description</Text>
         <Controller control={control} rules= {{required: {value: true, message: 'Description required'}}}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -125,7 +108,7 @@ function MomentForm(props) {
         />
         {errors.description && <Text>Description is required</Text>}
 
-      </View>
+      </View> */}
 
 
       <TouchableOpacity title="Submit" onPress={handleSubmit(onSubmit)} style= {styles.button}> 
