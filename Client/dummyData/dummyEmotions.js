@@ -1,7 +1,6 @@
 
 
 /*
-
 emotions = [
   {
     id: 1,
@@ -9,6 +8,4 @@ emotions = [
     createdAt: ....,
   }
 ]
-
-
 */

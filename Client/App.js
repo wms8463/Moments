@@ -30,7 +30,9 @@ export default function App() {
 
   // on app start fetch moments, emotions, themes data
   useEffect(()=> {
-    API.fetchMoments().then((moments) => {setMoments(moments); setLoading(false)})
+    API.fetchMoments().then((moments) => {
+      // for each moment --> if no image, add default?
+      setMoments(moments); setLoading(false)})
     API.fetchEmotions().then((emotions) => {setEmotions(emotions); setLoading(false)})
     API.fetchThemes().then((themes) => {setThemes(themes); setLoading(false)})
   }, [])

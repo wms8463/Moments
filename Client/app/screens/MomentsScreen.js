@@ -33,7 +33,6 @@ function Moments(props) {
       {/* Flat List displaying the moment components */}
       <View style={{flex: 1, backgroundColor: 'white',}}>
         <MomentsList moments={moments}></MomentsList>
-
       </View>
 
 
