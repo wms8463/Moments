@@ -13,24 +13,45 @@ import { useForm, Controller } from "react-hook-form";
 import { CustomPicker } from './CustomPicker'
 import { DropDownButton } from './DropDownButton'
 import { FormDescriptionComponent } from './FormDescriptionComponent'
+import {postForm} from '../../services/api'
 
 function MomentForm(props) {
 
   const { emotions, themes } = props
-  const { control, handleSubmit, formState: { errors } } = useForm();
+  const { control, handleSubmit, reset, formState: { errors } } = useForm();
 
   const [ emotionModal, setEmotionModal ] = useState(false);
   const [ themeModal, setThemeModal ] = useState(false);
 
-  const [emotion, setEmotion] = useState([]);
-  const [theme, setTheme] = useState([]);
+  const [inputEmotions, setInputEmotion] = useState([]);
+  const [inputThemes, setInputThemes] = useState([]);
 
 
   const buttonTitleEmotion = 'Emotions'
   const buttonTitleTheme = 'Themes'
 
 
-  const onSubmit = data => alert(emotions[0].name);
+  const onSubmit = (data) => {
+    let emotionsIDs = []
+    emotions.forEach(emotion => {
+      if (emotion.name === inputEmotions) emotionsIDs.push(emotion.id)
+    })
+    let themesIDs = []
+    themes.forEach(theme => {
+      if (theme.name === inputThemes) themesIDs.push(theme.id)
+    })
+
+    // at them to the data object 
+    data.emotion = emotionsIDs,
+    data.theme = themesIDs
+
+    // invoke the PostForm function
+    postForm(data)
+
+    reset()
+
+  };
+
 
   return (
     <View style={styles.formContainer}>
@@ -61,13 +82,13 @@ function MomentForm(props) {
         <DropDownButton title={buttonTitleTheme} modalVisible={themeModal} setModalVisible={setThemeModal} ></DropDownButton>
         <CustomPicker 
           modalVisible= { emotionModal } setModalVisible= { setEmotionModal } 
-          value= { emotion } setValue= { setEmotion } items= { emotions }
+          value= { inputEmotions } setValue= { setInputEmotion } items= { emotions }
         >
         </CustomPicker>
 
         <CustomPicker 
           modalVisible= { themeModal } setModalVisible= { setThemeModal } 
-          value= { theme } setValue= { setTheme } items= { themes }
+          value= { inputThemes } setValue= { setInputThemes } items= { themes }
         >
         </CustomPicker>
 
@@ -147,7 +168,7 @@ const styles = StyleSheet.create({
     height: 60,
     marginTop: 5,
     marginBottom: 25,
-    backgroundColor: 'lightgreen',
+    backgroundColor: 'white',
     borderWidth: 1,
     borderColor: 'green',
     justifyContent: 'space-around',
@@ -177,7 +198,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     flex: 1,
     width: '100%',
-    backgroundColor: 'lightgray',
+    backgroundColor: 'white',
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 5,
@@ -190,7 +211,7 @@ const styles = StyleSheet.create({
   button: {
     width: 100,
     height: 50,
-    backgroundColor: 'gray',
+    backgroundColor: 'white',
     top: 10,
     borderRadius: 15,
     borderColor: 'black',

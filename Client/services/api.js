@@ -18,4 +18,22 @@ const fetchThemes = () => {
   .then(res => res.json())
 }
 
-module.exports = {fetchEmotions, fetchMoments, fetchThemes}
+const postForm = async (data) => {
+  await fetch(`http://${urlNumber}:3051/moments`, {
+  method: 'POST',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    title: data.title,
+    description: data.description,
+    Emotions: [data.emotion],
+    Themes: [data.theme]
+  })
+});
+}
+
+
+
+module.exports = {fetchEmotions, fetchMoments, fetchThemes, postForm}

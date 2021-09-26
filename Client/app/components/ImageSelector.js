@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
   imageSelectContainer: {
     height: 110,
     width: '45%',
-    backgroundColor: 'lightgrey',
-    top: 40,
+    backgroundColor: 'white',
+    top: 50,
     borderRadius: 10,
     borderColor: 'black',
     borderWidth: 1,

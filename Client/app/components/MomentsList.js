@@ -19,7 +19,12 @@ function MomentsList(props) {
         <View style={styles.momentContainer}>
           {/* Image container */}
           <View style={styles.imageContainer}>
-            <Image style={styles.image} source={{uri: item.Photos[0].name}}></Image>
+            { 
+              item.Photos[0]? 
+                 <Image style={styles.image} source={{uri: item.Photos[0].name}}></Image> :
+                 <Image style={styles.image} source={require('../../assets/default-image.jpeg')}></Image>
+              }
+            
           </View>
 
 
