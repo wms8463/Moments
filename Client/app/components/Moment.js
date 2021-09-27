@@ -1,4 +1,4 @@
-import React, { cloneElement } from 'react';
+import React from 'react';
 import {StyleSheet, View, Text, Modal, Image, SafeAreaView, TouchableOpacity, ScrollView} from 'react-native'
 
 function MomentModal(props) {
@@ -17,7 +17,7 @@ function MomentModal(props) {
       transparent={true} 
       visible={modalVisible}
       onRequestClose={() => {
-        Alert.alert("Modal has been closed.");
+        // Alert.alert("Modal has been closed.");
         setModalVisible(!modalVisible);
       }}
     >

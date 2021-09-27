@@ -1,22 +1,16 @@
 import React, { useState } from "react";
 import { 
-  Alert, 
   Text, 
   View, 
   TextInput, 
-  Modal, 
   TouchableOpacity, 
   StyleSheet, 
-  Button,
   Platform
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { CustomPicker } from './CustomPicker'
 import { DropDownButton } from './DropDownButton'
-import { FormDescriptionComponent } from './FormDescriptionComponent'
 import {postForm} from '../../services/api'
-import {NewDropDownPicker} from './NewDropDownPicker'
-// import DateModalPicker from './DateModalPicker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 
@@ -32,7 +26,6 @@ function MomentForm(props) {
   
   const [ emotionModal, setEmotionModal ] = useState(false);
   const [ themeModal, setThemeModal ] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false)
   
   const [inputEmotions, setInputEmotions] = useState([]);
   const [inputThemes, setInputThemes] = useState([]);
@@ -53,10 +46,6 @@ function MomentForm(props) {
   };
 
 
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  };
 
   
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity, Modal} from 'react-native'
 import {Picker} from '@react-native-picker/picker';
 
@@ -14,7 +14,6 @@ function CustomPicker(props) {
       transparent={true} 
       visible={modalVisible}
       onRequestClose={() => {
-        Alert.alert("Modal has been closed.");
         setModalVisible(!modalVisible);
       }}
         >
@@ -29,7 +28,7 @@ function CustomPicker(props) {
 
               <Picker
                 selectedValue={value}
-                onValueChange={(itemValue, itemIndex) =>
+                onValueChange={(itemValue) =>
                   setValue(itemValue)
                 }
                 style={styles.pickerElement}
@@ -37,7 +36,7 @@ function CustomPicker(props) {
                 
                 {items.map((item => {
                   return (
-                    <Picker.Item label={item.name} value={item.name}/>
+                    <Picker.Item label={item.name} value={item.name} key={item.id}/>
                   )
                 }))}    
 

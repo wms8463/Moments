@@ -4,14 +4,11 @@ import {
   View, 
   Text, 
   StyleSheet, 
-  SafeAreaView, 
   ScrollView, 
-  FlatList 
 } from 'react-native';
 import { emotionSummary, themeSummary } from '../calculations/summary'
-import { SummaryBox } from '../components/SummaryBoxes.js'
 import { SummaryList } from '../components/SummaryList'
-import {HighlightsList} from '../components/HighlightsList'
+import { HighlightsList } from '../components/HighlightsList'
 
 
 
@@ -20,8 +17,7 @@ function Home (props) {
 
   const { moments } = props
   const momentCount = moments.length
-  const filler = 'TBD'
-  const title = 'Moments'
+
   const emotionsDescending = emotionSummary(moments)
   const themesDescending = themeSummary(moments)
   

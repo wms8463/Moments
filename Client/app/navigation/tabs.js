@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 
 
 const Tabs = (props) => {
-  const {moments, emotions, themes, image} = props
+  const { moments, emotions, themes, image } = props
  
   return (
     <Tab.Navigator 
@@ -30,16 +30,12 @@ const Tabs = (props) => {
       <Tab.Screen 
         name="New" 
         initialParams={{icon: 'create-outline'}}
-        // import { Ionicons } from '@expo/vector-icons';
-        // <Ionicons name="create-outline" size={24} color="black" />
         children={() => <NewMomentScreen emotions={emotions} themes={themes} image={image}/>}
       ></Tab.Screen>
 
       <Tab.Screen 
         name="Moments" 
         initialParams={{icon: 'list-outline'}}
-        // import { Ionicons } from '@expo/vector-icons';
-        // <Ionicons name="list-outline" size={24} color="black" />
         children={() => <MomentsScreen moments={moments}/>}
       ></Tab.Screen>
 

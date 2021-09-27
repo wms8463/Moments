@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import { MomentForm } from '../components/CreateMomentForm'
 import { ImageSelector } from '../components/ImageSelector'
 import { KeyboardAvoidingWrapper } from '../components/KeyboardAvoidingWrapper'

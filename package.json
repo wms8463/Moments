@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/wms8463/Moments/issues"
   },
-  "homepage": "https://github.com/wms8463/Moments#readme"
+  "homepage": "https://github.com/wms8463/Moments#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.26.0"
+  }
 }

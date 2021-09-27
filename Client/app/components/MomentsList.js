@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import { set } from 'react-hook-form';
-import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, FlatList, StyleSheet,  } from 'react-native';
 import { MomentModal } from  './Moment'
 import { MomentListItemVert } from './MomentListItemVert'
 
@@ -41,9 +40,6 @@ function MomentsList(props) {
               <MomentListItemVert 
                 item={item} 
                 onClickItem = {onClickItem}
-                // setModalContent={setModalContent} 
-                // modalVisible={modalVisible} 
-                // setModalVisible={setModalVisible}
               ></MomentListItemVert>
 
             </View>
