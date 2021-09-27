@@ -79,19 +79,16 @@ function MomentForm(props) {
       {/* Select Emotions and Themes */}
       <View style = {styles.dropDownListCont}>
         <DropDownButton title={buttonTitleEmotion} modalVisible={emotionModal} setModalVisible={setEmotionModal} ></DropDownButton>
-        <DropDownButton title={buttonTitleTheme} modalVisible={themeModal} setModalVisible={setThemeModal} ></DropDownButton>
         <CustomPicker 
           modalVisible= { emotionModal } setModalVisible= { setEmotionModal } 
           value= { inputEmotions } setValue= { setInputEmotion } items= { emotions }
-        >
-        </CustomPicker>
+        ></CustomPicker>
 
+        <DropDownButton title={buttonTitleTheme} modalVisible={themeModal} setModalVisible={setThemeModal} ></DropDownButton>
         <CustomPicker 
           modalVisible= { themeModal } setModalVisible= { setThemeModal } 
           value= { inputThemes } setValue= { setInputThemes } items= { themes }
-        >
-        </CustomPicker>
-
+        ></CustomPicker>
       </View>
 
 

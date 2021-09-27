@@ -1,50 +1,56 @@
-import React from 'react';
-import { View, Text, FlatList, StyleSheet, Image } from 'react-native';
-
+import React, {useState} from 'react';
+import { set } from 'react-hook-form';
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { MomentModal } from  './Moment'
+import { MomentListItemVert } from './MomentListItemVert'
 
 
 function MomentsList(props) {
 
-  const {moments} = props
+  const { moments } = props
+
+  const [modalVisible, setModalVisible] = useState(false)
+  const [modalContent, setModalContent] = useState()
+  
+  const onClickItem = (item) => {
+    setModalContent(item)
+    setModalVisible(true)
+  }
 
   return (
-
-    <FlatList 
-      style = {styles.container}
-      contentContainerStyle={styles.contentContainer}
-      data = {moments}
-      keyExtractor={item => item.id}
-      renderItem={({item}) => {
-        return (
-        <View style={styles.momentContainer}>
-          {/* Image container */}
-          <View style={styles.imageContainer}>
-            { 
-              item.Photos[0]? 
-                 <Image style={styles.image} source={{uri: item.Photos[0].name}}></Image> :
-                 <Image style={styles.image} source={require('../../assets/default-image.jpeg')}></Image>
-              }
-
-          </View>
-
-
-          {/* Content container */}
-          <View style={styles.textContainer}>
-            <Text style={styles.title}>{item.title}</Text>
-            <View style={styles.emotions}>
-              {item.Emotions.map((emotion) => {
-                  return ( <Text style={styles.emotionTextEl} key={emotion.id}>{emotion.name}</Text>)
-                })
-              }
-            </View>
-            <Text style={styles.description} numberOfLines={2}>{item.description}</Text>
-            {/* <Text style={styles.createdAt}>{item.createdAt}</Text> */}
-          </View>
-
-        </View>
+    <View>
+      {modalVisible && (
+        <MomentModal 
+          item={modalContent} 
+          modalVisible={modalVisible} 
+          setModalVisible={setModalVisible} 
+        />
         )
-      }}
-    />
+      
+      }
+      
+      <FlatList 
+        style = {styles.container}
+        contentContainerStyle={styles.contentContainer}
+        data = {moments}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => {
+          return (
+            <View style={styles.momentContainer}>
+
+              <MomentListItemVert 
+                item={item} 
+                onClickItem = {onClickItem}
+                // setModalContent={setModalContent} 
+                // modalVisible={modalVisible} 
+                // setModalVisible={setModalVisible}
+              ></MomentListItemVert>
+
+            </View>
+          )
+        }}
+      />
+    </View>
   );
 }
 
@@ -70,62 +76,13 @@ const styles = StyleSheet.create({
     padding: 5,
     marginBottom: 20,
     width: 310,
-    height: 103,
+    height: 115,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'lightgray'
   },
 
-  imageContainer: {
-    height: 80,
-    width: 80,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 12,
-    marginLeft: 3
-  },
-
-  image: {
-    height: 75,
-    width: 75,
-    borderRadius: 15,
-    borderColor: 'black',
-    borderWidth: 1
-  },
-
-  textContainer: {
-    flexDirection: 'column',
-    overflow: 'hidden',
-    flex: 1
-  },
-
-  title: {
-    fontSize: 15,
-    fontWeight: '600',
-    marginTop: 10
-  },
-
-  emotions: {
-    flexDirection: 'row',
-  },
-
-  emotionTextEl: {
-    margin: 2,
-    marginBottom: 5,
-    fontSize: 11,
-    opacity: .5
-  },
-
-  description: {
-    fontSize: 12,
-    marginBottom: 5
-  },
-
-  createdAt: {
-    fontSize: 10
-  },
-
-  
 })
 
 module.exports = {MomentsList};
+

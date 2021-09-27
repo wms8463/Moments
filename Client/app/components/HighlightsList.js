@@ -1,29 +1,60 @@
-import React from 'react';
-import { View, Text, FlatList, StyleSheet, Image } from 'react-native';
+import React, {useState} from 'react';
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import {getHighlights} from '../calculations/highlights'
+import {MomentModal} from './Moment'
 
 
 function HighlightsList(props) {
 
   const {moments} = props
   const highlights = getHighlights(moments)
+
+  const [modalVisible, setModalVisible] = useState(false)
+  const [modalContent, setModalContent] = useState()
+  
+  const onClickItem = (item) => {
+    setModalContent(item)
+    setModalVisible(true)
+  }
   
 
   return (
     <View style={styles.container}>
+      {/* import momentmodal so it gets accessed */}
+      {/* Add the model state visible and content variables */}
+      {/* make each highlight item a touchable componenet*/}
+
+      {modalVisible && (
+        <MomentModal 
+          item={modalContent} 
+          modalVisible={modalVisible} 
+          setModalVisible={setModalVisible} 
+        />
+        )
+      
+      }
+
       <FlatList 
         horizontal={true}
         data={ highlights }
         renderItem={({item}) => {
           return (
-            <View style={styles.highlight}>
-              <Image style={styles.image} source={{uri: item.Photos[0].name}}/>
-              <View style={styles.backgroundBlur}></View>
-              <View style={styles.textContainer}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.date}>{item.createdAt}</Text>
+            <TouchableOpacity
+              onPress={()=> {
+                onClickItem(item)
+                }}
+            >
+
+              <View style={styles.highlight}>
+                <Image style={styles.image} source={{uri: item.Photos[0].name}}/>
+                <View style={styles.backgroundBlur}></View>
+                <View style={styles.textContainer}>
+                  <Text style={styles.title}>{item.title}</Text>
+                  <Text style={styles.date}>{item.createdAt}</Text>
+                </View>
               </View>
-            </View>
+
+            </TouchableOpacity>
           )
         }}
       

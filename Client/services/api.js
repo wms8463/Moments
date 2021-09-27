@@ -1,7 +1,7 @@
 
 
 
-const urlNumber = '192.168.1.53'
+const urlNumber = '192.168.1.152'
 
 const fetchMoments = () => {
   return fetch(`http://${urlNumber}:3051/moments`)
