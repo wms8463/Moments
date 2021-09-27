@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 
   container: {
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: 'lightgray',
     width: 280,
     justifyContent: 'space-between',
     height: 70,

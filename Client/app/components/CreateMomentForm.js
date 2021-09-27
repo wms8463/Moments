@@ -7,30 +7,63 @@ import {
   Modal, 
   TouchableOpacity, 
   StyleSheet, 
-  Button
+  Button,
+  Platform
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { CustomPicker } from './CustomPicker'
 import { DropDownButton } from './DropDownButton'
 import { FormDescriptionComponent } from './FormDescriptionComponent'
 import {postForm} from '../../services/api'
+import {NewDropDownPicker} from './NewDropDownPicker'
+// import DateModalPicker from './DateModalPicker';
+import DateTimePicker from '@react-native-community/datetimepicker';
+
+
+
+
+
+
 
 function MomentForm(props) {
-
+  
   const { emotions, themes } = props
   const { control, handleSubmit, reset, formState: { errors } } = useForm();
-
+  
   const [ emotionModal, setEmotionModal ] = useState(false);
   const [ themeModal, setThemeModal ] = useState(false);
-
-  const [inputEmotions, setInputEmotion] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false)
+  
+  const [inputEmotions, setInputEmotions] = useState([]);
   const [inputThemes, setInputThemes] = useState([]);
-
-
+  
+  
   const buttonTitleEmotion = 'Emotions'
   const buttonTitleTheme = 'Themes'
+  const [show, setShow] = useState(false);
 
 
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState('date');
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+  };
+
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  
+
+
+
+
+  
   const onSubmit = (data) => {
     let emotionsIDs = []
     emotions.forEach(emotion => {
@@ -78,10 +111,28 @@ function MomentForm(props) {
 
       {/* Select Emotions and Themes */}
       <View style = {styles.dropDownListCont}>
+
+          
+        <View style={styles.datePickerContainer}>
+          <View>
+            <Text> Select Date</Text>
+          </View>
+          {
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode= {mode}
+              is24Hour={true}
+              display="default"
+              onChange={onChange}
+            />
+          }
+        </View>
+
         <DropDownButton title={buttonTitleEmotion} modalVisible={emotionModal} setModalVisible={setEmotionModal} ></DropDownButton>
         <CustomPicker 
           modalVisible= { emotionModal } setModalVisible= { setEmotionModal } 
-          value= { inputEmotions } setValue= { setInputEmotion } items= { emotions }
+          value= { inputEmotions } setValue= { setInputEmotions } items= { emotions }
         ></CustomPicker>
 
         <DropDownButton title={buttonTitleTheme} modalVisible={themeModal} setModalVisible={setThemeModal} ></DropDownButton>
@@ -171,6 +222,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     flexDirection: 'row',
     alignItems: "center"
+  },
+
+  datePickerContainer: {
+    height: 60, 
+    width: 120, 
+    backgroundColor: 'white', 
+    borderColor: 'black', 
+    borderWidth: 1, 
+    borderRadius: 10,
   },
 
   descInputLabelCont: {

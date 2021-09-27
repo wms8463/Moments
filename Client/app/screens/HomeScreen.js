@@ -30,7 +30,9 @@ function Home (props) {
   return (
     <View style={{backgroundColor: 'yellow', flex: 1}}>
       <ScrollView style= {styles.container} contentContainerStyle={styles.scrollcontainer}>
-
+        <View style={{height: 100, alignContent: 'center', justifyContent: 'center'}}>
+          <Text style={{fontSize: 35, top: 40, fontWeight: '700'}}>Moments</Text>
+        </View>
         {/* COMPONENT 1 OF 2 */}
         <View style={styles.summaryContainer}>
 
