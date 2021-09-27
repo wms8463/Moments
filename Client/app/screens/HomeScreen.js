@@ -28,43 +28,42 @@ function Home (props) {
 
 
   return (
-      
-    <ScrollView style= {styles.container} contentContainerStyle={styles.scrollcontainer}>
+    <View style={{backgroundColor: 'yellow', flex: 1}}>
+      <ScrollView style= {styles.container} contentContainerStyle={styles.scrollcontainer}>
 
-      {/* COMPONENT 1 OF 2 */}
-      <View style={styles.summaryContainer}>
+        {/* COMPONENT 1 OF 2 */}
+        <View style={styles.summaryContainer}>
 
-        {/* 1 OF 3 */}
-        <View style={styles.headerContainer}>
-          <Text style={styles.header}>Summary - {momentCount} Moments</Text>
-        </View>
-
-        {/* 3 OF 3 */}
-        <View style={styles.longCompContainer}>
-          <View style={styles.summaryCompCont}>
-            <Text style={styles.subHeader}>Emotions</Text>
-            <SummaryList data={emotionsDescending}></SummaryList>
+          {/* 1 OF 3 */}
+          <View style={styles.headerContainer}>
+            <Text style={styles.header}>Summary - {momentCount} Moments</Text>
           </View>
-          <View style={styles.summaryCompCont}>
-            <Text style={styles.subHeader}>Themes</Text>
-            <SummaryList data={themesDescending}></SummaryList>
+
+          {/* 3 OF 3 */}
+          <View style={styles.longCompContainer}>
+            <View style={styles.summaryCompCont}>
+              <Text style={styles.subHeader}>Emotions</Text>
+              <SummaryList data={emotionsDescending}></SummaryList>
+            </View>
+            <View style={styles.summaryCompCont}>
+              <Text style={styles.subHeader}>Themes</Text>
+              <SummaryList data={themesDescending}></SummaryList>
+            </View>
+          </View>
+
+        </View>
+
+        {/* COMPONENT 2 OF 2 */}
+        <View style={styles.highlightsContainer}>
+          <View style={styles.headerContainer}>
+            <Text style={styles.header}>Highlights</Text>
+          </View>
+          <View style={styles.highlightlistcontainer}>
+            <HighlightsList moments = {moments}></HighlightsList>
           </View>
         </View>
-
-      </View>
-
-      {/* COMPONENT 2 OF 2 */}
-      <View style={styles.highlightsContainer}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.header}>Highlights</Text>
-        </View>
-        <View style={styles.highlightlistcontainer}>
-          <HighlightsList moments = {moments}></HighlightsList>
-        </View>
-      </View>
-
-
-    </ScrollView>
+      </ScrollView>
+    </View>
 
   );
 }
