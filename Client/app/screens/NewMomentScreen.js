@@ -1,10 +1,13 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { MomentForm } from '../components/CreateMomentForm'
 import { KeyboardAvoidingWrapper } from '../components/KeyboardAvoidingWrapper'
 import { colors } from '../../assets/styles/styles'  
 
 
+
+
+const {height} = Dimensions.get('screen')
 function NewMoment(props) {
   const {emotions, themes} = props
 
@@ -33,24 +36,24 @@ function NewMoment(props) {
 
 const styles = StyleSheet.create({
   fullScreenContainer: {
-    flex: 1, 
+    height: height,
     alignContent: 'center', 
     justifyContent: 'center',
     backgroundColor: colors.backgroundDark
   },
 
   container: {
-    flex: 1,
+    height: height,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   
   formContainer: {
     height: 620,
+    top: 70,
     width: '90%',
     backgroundColor: colors.backgroundLightSecondary,
     borderRadius: 20,
-    top: 70,
     borderColor: 'black',
     alignItems: 'center',
     justifyContent: 'space-between',

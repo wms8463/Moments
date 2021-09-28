@@ -98,13 +98,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     borderColor: 'black',
-    borderWidth: 1,
+    borderWidth: 1.15,
     zIndex: 1,
     position: 'absolute',
     right: 10,
     top: 15,
     borderRadius: 20,
-    backgroundColor: colors.backgroundDark,
+    backgroundColor: colors.backgroundLightSecondaryDark,
   },
 
 
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
 
   sumBarElemContainer: {
     borderColor: 'black',
-    borderWidth: 1,
+    borderWidth: 1.5,
     width: 145,
     alignItems: 'center',
     justifyContent: 'flex-start',

@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet, Text} from 'react-native'
-
+import {fonts, colors} from '../../assets/styles/styles'
 
 
 
@@ -21,19 +21,23 @@ function DropDownButton(props) {
 const styles = StyleSheet.create({
 
   dropDownButton: {
-    height: 32,
-    width: 80,
-    backgroundColor: 'white',
-    borderColor: 'black',
+    height: 70, 
+    width: 90,
+    borderColor: 'black', 
+    borderWidth: 1, 
     borderRadius: 10,
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignContent: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.backgroundLightSecondaryDark
   },
 
   label: {
-    fontSize: 12,
-    fontWeight: '500'
+    fontSize: 14,
+    fontFamily: fonts.primary,
+    fontWeight: '700',
+    color: 'white',
+    textAlign: 'center'
+
   }
   
 })

@@ -2,12 +2,11 @@
 import React from 'react';
 import { 
   View, 
-  Text, 
   StyleSheet, 
   ScrollView, 
 } from 'react-native';
 import { emotionSummary, themeSummary } from '../calculations/summary'
-import {colors, fonts} from '../../assets/styles/styles'
+import {colors} from '../../assets/styles/styles'
 import {HomeScreenTitle} from '../components/HomeScreenTitle'
 import {HomeSummaryView} from '../components/HomeSummaryView'
 import {HomeHighlightsView} from '../components/HomeHighlightsView'
@@ -21,6 +20,7 @@ function Home (props) {
   
   return (
     <View style= {styles.container} >
+
       <ScrollView  contentContainerStyle={styles.scrollcontainer}>
    
         <HomeScreenTitle></HomeScreenTitle>

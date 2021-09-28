@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import { View, FlatList, StyleSheet,  } from 'react-native';
+import { 
+  View, FlatList, StyleSheet, TextInput,
+} from 'react-native';
 import { MomentModal } from  './Moment'
 import { MomentListItemVert } from './MomentListItemVert'
 import {colors} from '../../assets/styles/styles'
@@ -8,14 +10,34 @@ import {colors} from '../../assets/styles/styles'
 
 function MomentsList(props) {
 
+  // to do this I need to create a state for the filtered data that starts out as all the data
+
   const { moments } = props
   const [modalVisible, setModalVisible] = useState(false)
   const [modalContent, setModalContent] = useState()
+
+  const [filteredData, setFilteredData] = useState([...moments])
   
+
+
+
   const onClickItem = (item) => {
     setModalContent(item)
     setModalVisible(true)
   }
+
+  const itemView = ({item}) => {
+    return (
+      <View style={styles.momentContainer}>
+        <MomentListItemVert 
+          item={item} 
+          onClickItem = {onClickItem}
+        ></MomentListItemVert>
+      </View>
+    )
+  }
+
+
 
   return (
     <View>
@@ -26,7 +48,6 @@ function MomentsList(props) {
           setModalVisible={setModalVisible} 
         />
         )
-      
       }
       
       <FlatList 
@@ -34,18 +55,19 @@ function MomentsList(props) {
         contentContainerStyle={styles.contentContainer}
         data = {moments}
         keyExtractor={item => item.id}
-        renderItem={({item}) => {
-          return (
-            <View style={styles.momentContainer}>
+        renderItem={itemView}
+        // renderItem={({item}) => {
+        //   return (
+        //     <View style={styles.momentContainer}>
 
-              <MomentListItemVert 
-                item={item} 
-                onClickItem = {onClickItem}
-              ></MomentListItemVert>
+        //       <MomentListItemVert 
+        //         item={item} 
+        //         onClickItem = {onClickItem}
+        //       ></MomentListItemVert>
 
-            </View>
-          )
-        }}
+        //     </View>
+        //   )
+        // }}
       />
     </View>
   );
