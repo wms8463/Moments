@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import { View, FlatList, StyleSheet,  } from 'react-native';
 import { MomentModal } from  './Moment'
 import { MomentListItemVert } from './MomentListItemVert'
+import {colors} from '../../assets/styles/styles'
+
 
 
 function MomentsList(props) {
 
   const { moments } = props
-
   const [modalVisible, setModalVisible] = useState(false)
   const [modalContent, setModalContent] = useState()
   
@@ -52,30 +53,34 @@ function MomentsList(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black',
+    backgroundColor: colors.backgroundDark,
     borderColor: 'black',
-    borderWidth: 1,
-
   },
 
   contentContainer: {
     alignItems: 'center',
     width: '100%',
     paddingTop: 30,
-    paddingBottom: 30
+    paddingBottom: 120
   },
 
   momentContainer: {
-    borderRadius: 12,
+    borderRadius: 15,
     borderColor: 'black',
-    borderWidth: 2,
+    borderWidth: 1,
     padding: 5,
-    marginBottom: 20,
-    width: 310,
-    height: 115,
+    paddingRight: 10,
+    marginBottom: 25,
+    width: 330,
+    height: 140,
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'lightgray'
+    backgroundColor: colors.backgroundLight,
+    shadowColor: colors.backgroundLight,
+    shadowOpacity: .25,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 5 }
   },
 
 })

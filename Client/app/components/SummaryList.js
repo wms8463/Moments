@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, FlatList } from 'react-native';
-
+import {fonts, colors} from '../../assets/styles/styles'
 
 
 
@@ -9,13 +9,9 @@ function SummaryList(props) {
 
   const { data } = props
 
- // I would need to pass only the list of moments rather than iterate over
- // it twice
 
   return (
     <View style={styles.container}>
-
-
       <FlatList 
       style = {styles.list}
       contentContainerStyle = {styles.listContentContSty}
@@ -39,46 +35,48 @@ function SummaryList(props) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLight,
     justifyContent: 'center',
     alignContent: 'center',
+    height: 70,
+    borderRadius : 10,
+    paddingHorizontal: 6,
     borderWidth: 1,
-    borderColor: 'green',
-    height: 80,
-    borderRadius : 20,
+    shadowColor: colors.backgroundDark,
+    shadowOpacity: .5,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 1 }
   },
 
-  list: {
-    borderWidth: 1,
-    borderColor: 'red',
-  },
 
   listContentContSty: {
     alignItems: 'center',
+
   },
 
   itemcontainer: {
-    borderColor: 'black',
     borderWidth: 1,
-    margin: 11,
-    width: 60,
-    height: 60,
+    marginHorizontal: 11,
+    width: 70,
+    height: 52,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
-    backgroundColor: 'lightgray'
+    backgroundColor: colors.backgroundLightSecondary
   },
 
 
   name: {
     fontSize: 11,
     fontWeight: '500',
-    bottom: 5,
+    bottom: 3,
+    fontFamily: fonts.primary
   },
 
   count: {
     fontSize: 15,
-    fontWeight: '600',
+    fontWeight: '700',
+    fontFamily: fonts.primary
   },
 })
 

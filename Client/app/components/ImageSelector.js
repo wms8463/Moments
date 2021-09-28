@@ -1,29 +1,54 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, Image } from 'react-native';
-
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import * as ImagePicker from 'expo-image-picker'
 
 function ImageSelector(props) {
+
+
+  const pickImage = async () => {
+    let image = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4,3],
+      quality: 1
+    })
+    if (!image.cancelled) {
+      setImage(image.uri)
+    }
+  }
+  const { setImage } = props
+
   return (
-    <View style={styles.imageSelectContainer}>
-      <Text style={styles.label}>Add Photos</Text>
+    <View style={styles.imageComponentWrapper}>
+      <View style={styles.headerAndButtonContainer}>
+        <TouchableOpacity onPress={() => pickImage()}>
+          <Text style={styles.label}>Add Photos</Text>
+        </TouchableOpacity>
+      </View>
     </View>
     )
 }
 
 
 const styles = StyleSheet.create({
-  imageSelectContainer: {
-    height: 110,
-    width: '45%',
-    backgroundColor: 'white',
-    top: 50,
-    borderRadius: 10,
-    borderColor: 'black',
-    borderWidth: 1,
-    marginBottom: 25,
-    alignContent: 'center',
+  imageComponentWrapper: {
+    bottom: 0,
     justifyContent: 'center',
-    opacity: 1,
+    alignContent: 'center',
+    width: 200
+  },
+
+  headerAndButtonContainer: {
+    height: 50,
+    borderColor: 'yellow',
+    borderWidth: 3,
+    width: 150,
+    borderRadius: 30
+  },
+
+  imageSelectContainer: {
+    height: 80,
+    width: 100
   },
 
   label: {

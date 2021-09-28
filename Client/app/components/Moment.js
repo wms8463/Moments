@@ -1,15 +1,15 @@
 import React from 'react';
 import {StyleSheet, View, Text, Modal, Image, SafeAreaView, TouchableOpacity, ScrollView} from 'react-native'
+import {colors, fonts } from '../../assets/styles/styles'
+
+
+
 
 function MomentModal(props) {
   
-  // each MomentModal sends that to the modal, along with the state management
   const { modalVisible, setModalVisible, item } = props
-  // const {title, description, Emotions, Themes, Photos} = item
 
-  // each page must have a modal state that determines if it is displayerd
-  // there is only one modal state and one modal
-  // the touchable opacity for each dynamically passes a specific moment the same way it itself is rendered that way
+
 
   return (
     <Modal 
@@ -17,20 +17,19 @@ function MomentModal(props) {
       transparent={true} 
       visible={modalVisible}
       onRequestClose={() => {
-        // Alert.alert("Modal has been closed.");
         setModalVisible(!modalVisible);
       }}
     >
 
-      <SafeAreaView style={{flex: 1, backgroundColor: 'yellow'}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: colors.backgroundLight}}>
 
         <View style={styles.imageAndButtonContainer}>
 
           <TouchableOpacity 
             onPress={() => setModalVisible(!modalVisible)}
-            style={styles.closeButton}
+            style={styles.closeButtonContainer}
           >
-            <Text>Back</Text>
+            <Text style={styles.closeButtonText}>Back</Text>
           </TouchableOpacity>
 
           <View style={styles.imageContainer}>
@@ -88,44 +87,52 @@ function MomentModal(props) {
 
 const styles = StyleSheet.create({
   imageAndButtonContainer: {
-    height: 200,
-    borderWidth: 1,
-    borderColor: 'red',
-    width: '95%',
+    height: 220,
+    width: '92%',
     alignSelf: 'center'
   },
 
-  closeButton: {
+  closeButtonContainer:{
     height: 50, 
     width: 90, 
     justifyContent: 'center',
-    alignItems: 'center',
+    alignContent: 'center',
     borderColor: 'black',
     borderWidth: 1,
-    zIndex: 2,
+    zIndex: 1,
     position: 'absolute',
     right: 10,
-    top: 10,
+    top: 15,
     borderRadius: 20,
-    backgroundColor: 'white'
+    backgroundColor: colors.backgroundDark,
+  },
+
+
+
+  closeButtonText: { 
+    fontFamily: fonts.primary, 
+    color: 'white',
+    fontWeight: '600',
+    fontSize: 17,
+    zIndex: 2,
+    textAlign: 'center'
   },
 
   imageContainer:{
     flex: 1,
-    borderWidth: 1,
-    borderColor: 'red',
+
   },
 
   image: {
     flex: 1,
     borderRadius: 20,
+    borderColor: 'black',
+    borderWidth: 1,
     width: '100%'
   },
 
   titleContainer: {
-    height: 110,
-    borderWidth: 1,
-    borderColor: 'red',
+    height: 115,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
@@ -134,71 +141,81 @@ const styles = StyleSheet.create({
   }, 
 
   title: {
-    fontSize: 30,
+    fontSize: 26,
     textAlign: 'center',
-    fontWeight: '600'
+    fontWeight: '700',
+    fontFamily: fonts.primary,
+    lineHeight: 36,
+    paddingHorizontal: 15,
+    letterSpacing: .9,
   },
 
   summaryBar: {
-    height: 90,
-    borderColor: 'red',
+    height: 95,
+    backgroundColor: colors.backgroundAccentDark,
     borderWidth: 1,
-    backgroundColor: 'lightgray',
     flexDirection: 'row',
     borderRadius: 20,
     justifyContent: 'space-around',
     alignItems: 'center',   
-    width: '95%',
-    alignSelf: 'center'
+    width: '92%',
+    alignSelf: 'center',
+    paddingHorizontal: 10
   },
 
+
   sumBarElemContainer: {
-    borderColor: 'red',
+    borderColor: 'black',
     borderWidth: 1,
-    width: 160,
+    width: 145,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    height: 70,
-    backgroundColor: 'white',
+    height: 75,
+    backgroundColor: colors.backgroundLight,
     padding: 10,
     borderRadius: 10
   },
 
   elementHeader: {
-    fontSize: 17,
-    fontWeight: '500',
+    fontSize: 15,
+    fontWeight: '700',
     bottom: 4,
+    color: 'black',
+    fontFamily: fonts.primary
   },
 
   elementTextItemsCont: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignContent: 'center',
-    borderColor: 'red',
-    borderWidth: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
 
   elementText: {
-    fontSize: 13,
+    fontSize: 12,
     marginRight: 10,
+    color: 'black',
+    fontFamily: fonts.primary
   },
 
   descriptionContainer: {
-    borderColor: 'blue',
+    borderColor: 'black',
     borderWidth: 1,
-    borderRadius: 5,
-    width: '95%',
+    borderRadius: 10,
+    width: '92%',
     alignSelf: 'center',
-    height: 250,
+    height: 280,
     top: 20,
     padding: 20,
-    backgroundColor: 'white'
+    paddingHorizontal: 22,
+    backgroundColor: colors.backgroundAccentDark
   },
 
   descriptionText: {
-    fontSize: 19,
-    lineHeight: 30
+    fontSize: 18,
+    lineHeight: 33,
+    color: 'white',
+    fontFamily: fonts.primary
   }
 
 

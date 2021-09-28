@@ -5,25 +5,29 @@ import {
   TextInput, 
   TouchableOpacity, 
   StyleSheet, 
-  Platform
+  Platform,
+  Image
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { CustomPicker } from './CustomPicker'
 import { DropDownButton } from './DropDownButton'
 import {postForm} from '../../services/api'
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { fonts } from '../../assets/styles/styles'
+import * as ImagePicker from 'expo-image-picker'
+import ImageSelector from './ImageSelector'
 
 
 
 
 
 
-
-function MomentForm(props) {
+function MomentForm (props) {
   
   const { emotions, themes } = props
   const { control, handleSubmit, reset, formState: { errors } } = useForm();
   
+  // do i need both of these?
   const [ emotionModal, setEmotionModal ] = useState(false);
   const [ themeModal, setThemeModal ] = useState(false);
   
@@ -33,12 +37,14 @@ function MomentForm(props) {
   
   const buttonTitleEmotion = 'Emotions'
   const buttonTitleTheme = 'Themes'
+
+
+  
+  
   const [show, setShow] = useState(false);
-
-
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
-
+  
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
@@ -46,29 +52,52 @@ function MomentForm(props) {
   };
 
 
+  const [image, setImage] = useState([]) 
+  const pickImage = async () => {
+    let image = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4,3],
+      quality: 1
+    })
+    if (!image.cancelled) {
+      setImage(image.uri)
+    }
 
-  
+    // upload to firebase 
+    // firebase gives a url back and that is what gets stored in the database
 
 
+    // alert(image.uri)
+  }
 
 
-  
   const onSubmit = (data) => {
     let emotionsIDs = []
+    // start point inputEmotions = 'Humor'
+    // search in emotions for an emotion with a name equal to string
+    // output = [2]
     emotions.forEach(emotion => {
-      if (emotion.name === inputEmotions) emotionsIDs.push(emotion.id)
+      if (emotion.name === inputEmotions) {
+        emotionsIDs.push(emotion.id)
+      }
     })
+
+
     let themesIDs = []
+    themesIDs.push(inputThemes)
     themes.forEach(theme => {
       if (theme.name === inputThemes) themesIDs.push(theme.id)
     })
 
     // at them to the data object 
-    data.emotion = emotionsIDs,
-    data.theme = themesIDs
-
+    data.emotions = emotionsIDs,
+    data.themes = themesIDs
+    
     // invoke the PostForm function
     postForm(data)
+
+     // set state for some kind of animation
 
     reset()
 
@@ -76,7 +105,9 @@ function MomentForm(props) {
 
 
   return (
+
     <View style={styles.formContainer}>
+
       <View style={styles.titleInputLabelCont}>
         <Text style={styles.titleLabel}>Title</Text>
 
@@ -101,10 +132,9 @@ function MomentForm(props) {
       {/* Select Emotions and Themes */}
       <View style = {styles.dropDownListCont}>
 
-          
         <View style={styles.datePickerContainer}>
           <View>
-            <Text> Select Date</Text>
+            <Text style={{color: 'red'}}> Select Date</Text>
           </View>
           {
             <DateTimePicker
@@ -114,21 +144,32 @@ function MomentForm(props) {
               is24Hour={true}
               display="default"
               onChange={onChange}
+              style={{justifyContent: 'center', borderColor: 'black', borderWidth: 1, width: 100, backgroundColor: 'white'}}
             />
           }
         </View>
 
+
+
         <DropDownButton title={buttonTitleEmotion} modalVisible={emotionModal} setModalVisible={setEmotionModal} ></DropDownButton>
         <CustomPicker 
-          modalVisible= { emotionModal } setModalVisible= { setEmotionModal } 
-          value= { inputEmotions } setValue= { setInputEmotions } items= { emotions }
+          modalVisible= { emotionModal } 
+          setModalVisible= { setEmotionModal } 
+          value= { inputEmotions } 
+          setValue= { setInputEmotions } 
+          items= { emotions }
         ></CustomPicker>
 
         <DropDownButton title={buttonTitleTheme} modalVisible={themeModal} setModalVisible={setThemeModal} ></DropDownButton>
         <CustomPicker 
-          modalVisible= { themeModal } setModalVisible= { setThemeModal } 
-          value= { inputThemes } setValue= { setInputThemes } items= { themes }
+          modalVisible= { themeModal } 
+          setModalVisible= { setThemeModal } 
+          value= { inputThemes } 
+          setValue= { setInputThemes } 
+          items= { themes }
         ></CustomPicker>
+
+
       </View>
 
 
@@ -149,15 +190,31 @@ function MomentForm(props) {
                   )}
                   name= "description"
                   defaultValue= ""
-        
         />
         {errors.description && <Text>Description is required</Text>}
+      </View>
+
+      {/* IMAGE PICKER WORKS WHEN WRITTEN OUT BUT NOT WHEN IMPORTED */}
+      {/* <ImageSelector setImage={setImage}></ImageSelector> */}
+      <View style={styles.imageComponentWrapper}>
+        <View style={styles.headerAndButtonContainer}>
+          <TouchableOpacity onPress={() => pickImage()}>
+            <Text style={styles.label}>Add Photos</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
 
       <TouchableOpacity title="Submit" onPress={handleSubmit(onSubmit)} style= {styles.button}> 
             <Text>Create</Text>
       </TouchableOpacity>
+
+      <View style={{height: 100, width: 100, backgroundColor:'white'}}>
+        {/* {alert(image.uri)} */}
+
+        <Image source={{uri: image.uri}} style={{flex: 1}} />
+      </View>
+
     </View>
 
   );
@@ -167,50 +224,53 @@ const styles = StyleSheet.create({
   formContainer: {
     top:30,
     width: 300,
-    height: 460,
+    height: 550,
     borderColor: 'black',
-    borderWidth: 1,
+    borderWidth: 10,
+    // backgroundColor: 'white'
   },
 
   titleInputLabelCont: {
     alignItems: 'flex-start',
-    borderWidth: 1,
-    borderColor: 'red',
+    borderWidth: 10,
+    borderColor: 'blue',
     height: 90,
     marginBottom: 10
   },
 
-  titleLabel: {
-    fontSize: 21,
-    fontWeight: '500',
-    width: '100%',
-    borderColor: 'black',
-    borderWidth: 1,
-    margin: 2,
-  },
+      titleLabel: {
+        fontSize: 21,
+        fontWeight: '500',
+        width: '100%',
+        borderColor: 'black',
+        borderWidth: 1,
+        margin: 2,
+        fontFamily: fonts.semiBold
+      },
 
-  titleInput: {
-    paddingLeft: 10,
-    flex: 1,
-    width: '100%',
-    backgroundColor: 'white',
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-    fontSize: 18,
-    fontWeight: '500',
-    opacity: 1,
-  },
+      titleInput: {
+        paddingLeft: 10,
+        flex: 1,
+        width: '100%',
+        backgroundColor: 'white',
+        borderBottomColor: 'black',
+        borderBottomWidth: 1,
+        fontSize: 18,
+        fontWeight: '500',
+        opacity: 1,
+      },
 
   dropDownListCont: {
     height: 60,
     marginTop: 5,
     marginBottom: 25,
     backgroundColor: 'white',
-    borderWidth: 1,
+    borderWidth: 10,
     borderColor: 'green',
     justifyContent: 'space-around',
     flexDirection: 'row',
-    alignItems: "center"
+    alignItems: "center",
+    zIndex: 2
   },
 
   datePickerContainer: {
@@ -220,6 +280,7 @@ const styles = StyleSheet.create({
     borderColor: 'black', 
     borderWidth: 1, 
     borderRadius: 10,
+    color: 'pink',
   },
 
   descInputLabelCont: {

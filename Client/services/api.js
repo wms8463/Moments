@@ -1,6 +1,5 @@
 
 
-
 const urlNumber = '192.168.1.152'
 
 const fetchMoments = () => {
@@ -28,8 +27,8 @@ const postForm = async (data) => {
   body: JSON.stringify({
     title: data.title,
     description: data.description,
-    Emotions: [data.emotion],
-    Themes: [data.theme]
+    Emotions: data.emotions,
+    Themes: data.themes
   })
 });
 }

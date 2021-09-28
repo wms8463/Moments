@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {View, StyleSheet, Dimensions} from 'react-native'
 import {Tab} from './Tab'
+import {colors} from '../../assets/styles/styles'
 
 const {width} = Dimensions.get('screen')
 
@@ -8,10 +9,9 @@ const {width} = Dimensions.get('screen')
 function TabBar(props) {
   const {state, navigation} = props
   const {routes} = state
-  // alert(state.routes[0].name)
   const [selected, setSelected] = useState("Home")
 
-  const renderColor = (currentTab) => (currentTab === selected ? 'black' : 'gray')
+  const renderColor = (currentTab) => (currentTab === selected ? 'white' : 'gray')
   const handleClick = (activeTab, index) => {
     setSelected(activeTab)
     if (state.index !== index) {
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 
   container: {
     flexDirection: 'row',
-    backgroundColor: 'lightgray',
+    backgroundColor: 'rgba(210,209,191,1)',
     width: 280,
     justifyContent: 'space-between',
     height: 70,

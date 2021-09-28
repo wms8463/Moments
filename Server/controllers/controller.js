@@ -1,5 +1,4 @@
 const db = require('../model')
-const formatDate = require('moment')
 
 
 
@@ -49,8 +48,11 @@ exports.getThemesList = async ctx => {
 // seperate the req elements, user inputs go in new moment, selected inputs
 // are added to the association tables
 exports.postMoment = async ctx => {
-  const {title, description, emotions, themes, photos} = ctx.request.body;
-
+  const {title, description, Emotions, Themes, photos} = ctx.request.body;
+  console.log(typeof Emotions)
+  console.log(Emotions)
+  console.log(ctx.request.body.Emotions)
+  
   try {
     // create a new moment with title and description
     const newMoment = await db.Moment.create({
@@ -60,24 +62,24 @@ exports.postMoment = async ctx => {
 
     console.log('new moment id: ', newMoment.id)
     // add associated emotions to the Moment_Emotion Table
-    for (emotion of emotions) {
+    for (let emotion of Emotions) {
       await newMoment.addEmotion(emotion)
     }
 
     // add associated themes to the Theme Table
-    for (theme of themes) {
+    for (let theme of Themes) {
       await newMoment.addTheme(theme)
     }
 
      // add associated photos to the Photo Table
-     for (photo of photos) {
-       await db.Photo.create(
-         {
-          name: photo.source,
-          MomentId: newMoment.id
-        })
+    //  for (let photo of photos) {
+    //    await db.Photo.create(
+    //      {
+    //       name: photo.source,
+    //       MomentId: newMoment.id
+    //     })
       // await newMoment.addPhoto(photo)
-    }
+    // }
 
     // send back the complete moment
     ctx.body = await db.Moment.findOne(
