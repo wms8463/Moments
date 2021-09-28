@@ -12,6 +12,20 @@ function Moments(props) {
   const [filteredData, setFilteredData] = useState([...moments])
   const [search, setSearch] = useState('')
 
+  const searchFilter = (text) => {
+    if (text) {
+      const newData = moments.filter((item) => {
+        const itemData = item.title ? item.title.toUpperCase() : ''.toUpperCase()
+        const textData = text.toUpperCase()
+        return itemData.indexOf(textData) > -1;
+      })
+      setFilteredData(newData);
+      setSearch(text)
+    } else {
+      setFilteredData(moments)
+      setSearch(text)
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -29,7 +43,7 @@ function Moments(props) {
       </View>
 
       <View style={{flex: 1, backgroundColor: 'white',}}>
-        <MomentsList moments={moments}></MomentsList>
+        <MomentsList moments={moments}  filteredData={filteredData}  ></MomentsList>
       </View>
 
     </View>
@@ -43,7 +57,7 @@ const styles = StyleSheet.create({
   },
 
   headerBar: {
-    height: '22%',
+    height: '18%',
     backgroundColor: colors.backgroundLightSecondary,
     alignItems: 'center',
     justifyContent: 'center'
@@ -58,12 +72,10 @@ const styles = StyleSheet.create({
   },
 
   searchBarContainer: {
-    height: 70,
+    height: 80,
     backgroundColor: colors.backgroundDark,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: .5,
-    borderColor: 'white'
   },
 
   searchBar: {

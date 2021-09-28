@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
 
   closeButton: {
-    height: 20, 
+    height: 40, 
     width: '100%', 
     justifyContent: 'center',
     alignItems: 'center',

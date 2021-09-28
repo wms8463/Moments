@@ -32,7 +32,7 @@ function MomentListItemVert(props) {
             }
           </View>
           <Text style={styles.description} numberOfLines={2}>{item.description}</Text>
-          {/* <Text style={styles.createdAt}>{item.createdAt}</Text> */}
+
         </View>
 
 

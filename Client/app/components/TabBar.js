@@ -3,8 +3,11 @@ import {View, StyleSheet, Dimensions} from 'react-native'
 import {Tab} from './Tab'
 import {colors} from '../../assets/styles/styles'
 
-const {width} = Dimensions.get('screen')
 
+
+
+
+const {width} = Dimensions.get('screen')
 
 function TabBar(props) {
   const {state, navigation} = props
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
 
   container: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(210,209,191,1)',
+    backgroundColor: colors.backgroundLightSecondary,
     width: 280,
     justifyContent: 'space-between',
     height: 70,

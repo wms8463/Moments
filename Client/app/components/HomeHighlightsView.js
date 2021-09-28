@@ -21,7 +21,7 @@ const {moments} = props
 
 const styles = StyleSheet.create({
   highlightsContainer: {
-    top: 40, 
+    top: 20, 
     height: 430, 
     position: 'relative',
     width: '90%', 

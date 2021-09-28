@@ -11,7 +11,8 @@ const fonts = {
 
 const colors = {
   // backgroundDark: 'rgba(13,47,85,1)',
-  backgroundDark: 'rgba(0,48,73,1)',
+  // backgroundDark: 'rgba(0,48,73,1)',
+  backgroundDark: 'rgba(41,50,65,1)',
   fontPrimary: 'white',
   fontDark: 'black',
   backgroundLight: 'rgba(210,210,210,1)',

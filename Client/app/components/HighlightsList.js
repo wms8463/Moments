@@ -48,18 +48,12 @@ function HighlightsList(props) {
             >
 
               <View style={styles.highlight}>
-
                   <Image style={styles.image} source={{uri: item.Photos[0].name}}/>
-
                   <View style={styles.backgroundBlur}></View>
-
                   <View style={styles.textContainer}>
                     <Text style={styles.title}>{item.title}</Text>
-                    <Text style={styles.date}>{item.createdAt}</Text>
                   </View>
-
               </View>
-
             </TouchableOpacity>
           )
         }}
@@ -114,24 +108,24 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     position: 'absolute',
     zIndex: 1,
-    opacity: .6
+    opacity: 1
   },
 
   backgroundBlur: {
     zIndex: 2,
     position: 'absolute',
-    top: '30%',
+    top: '40%',
     width: '100%',
-    height: '70%',
+    height: '60%',
     padding: 15,
-    backgroundColor: colors.backgroundDark,
+    backgroundColor: 'black',
     opacity: .6,
     borderRadius: 14,
   },
 
   textContainer: {
     zIndex: 3,
-    top: '10%',
+    top: '20%',
     padding: 10
   },
   

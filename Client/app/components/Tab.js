@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity} from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
-
+import {colors} from '../../assets/styles/styles'
 
 
 
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   container: {
     width: 75,
     height: 55,
-    backgroundColor: 'rgba(13,47,85,1)',
+    backgroundColor: colors.backgroundDark,
     borderColor: 'black',
     borderWidth: 1,
     alignItems: 'center',

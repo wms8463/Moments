@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { 
-  View, FlatList, StyleSheet, TextInput,
+  View, FlatList, StyleSheet,
 } from 'react-native';
 import { MomentModal } from  './Moment'
 import { MomentListItemVert } from './MomentListItemVert'
@@ -10,16 +10,11 @@ import {colors} from '../../assets/styles/styles'
 
 function MomentsList(props) {
 
-  // to do this I need to create a state for the filtered data that starts out as all the data
 
-  const { moments } = props
   const [modalVisible, setModalVisible] = useState(false)
   const [modalContent, setModalContent] = useState()
-
-  const [filteredData, setFilteredData] = useState([...moments])
   
-
-
+  const {filteredData} = props
 
   const onClickItem = (item) => {
     setModalContent(item)
@@ -38,7 +33,6 @@ function MomentsList(props) {
   }
 
 
-
   return (
     <View>
       {modalVisible && (
@@ -49,25 +43,13 @@ function MomentsList(props) {
         />
         )
       }
-      
+
       <FlatList 
         style = {styles.container}
         contentContainerStyle={styles.contentContainer}
-        data = {moments}
+        data = {filteredData}
         keyExtractor={item => item.id}
         renderItem={itemView}
-        // renderItem={({item}) => {
-        //   return (
-        //     <View style={styles.momentContainer}>
-
-        //       <MomentListItemVert 
-        //         item={item} 
-        //         onClickItem = {onClickItem}
-        //       ></MomentListItemVert>
-
-        //     </View>
-        //   )
-        // }}
       />
     </View>
   );
@@ -83,7 +65,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     paddingTop: 30,
-    paddingBottom: 120
+    paddingBottom: 400
   },
 
   momentContainer: {
