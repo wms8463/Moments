@@ -4,8 +4,12 @@ import HomeScreen from '../screens/HomeScreen';
 import MomentsScreen from '../screens/MomentsScreen';
 import NewMomentScreen from '../screens/NewMomentScreen';
 import {TabBar} from '../components/TabBar'
+import { createStackNavigator } from '@react-navigation/stack';
 
 
+
+
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 

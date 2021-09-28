@@ -16,12 +16,12 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker'
 import ImageSelector from './ImageSelector'
 import {colors, fonts} from '../../assets/styles/styles'
-
-
+import { useNavigation } from '@react-navigation/native'
+import { FormSubmitAnimation } from '../screens/FormSubmitAnimation'
 
 
 function MomentForm (props) {
-  
+  const navigation = useNavigation()
   const { emotions, themes } = props
 
   const { control, handleSubmit, reset, formState: { errors } } = useForm();
@@ -40,6 +40,8 @@ function MomentForm (props) {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   
+
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
@@ -80,6 +82,8 @@ function MomentForm (props) {
     postForm(data)
      // set state for some kind of animation
     reset()
+  
+    navigation.navigate('Home')
   };
 
 

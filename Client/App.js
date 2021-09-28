@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { 
   StyleSheet, 
-
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import * as API from './services/api'
 import Tabs from './app/navigation/tabs';
+// import FormSubmitAnimation from './app/screens/FormSubmitAnimation';
 
 
 const image = '../../assets/basketball-three-people'
@@ -36,6 +36,7 @@ export default function App() {
   return (
     <NavigationContainer style={styles.container}>
       <Tabs  moments={moments} emotions={emotions} themes={themes} image={image}/>
+      {/* <FormSubmitAnimation></FormSubmitAnimation> */}
     </NavigationContainer>
  
   );
